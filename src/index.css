@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "Yeka";
+  src: local("Yeka"), url(./fonts/Yekan.ttf) format("truetype");
+}
+.body {
+  font-family: Yekan;
+}

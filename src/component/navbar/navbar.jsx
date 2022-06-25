@@ -1,0 +1,46 @@
+import { Container, Nav } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import "react-bootstrap/dist/react-bootstrap.js";
+import { Link } from "react-router-dom";
+import { MdHome, MdLogin } from "react-icons/md";
+import { HiOutlineBookOpen } from "react-icons/hi";
+import { TiEdit, TiClipboard } from "react-icons/ti";
+import { Book } from "react-bootstrap-icons";
+import "./navStyle.css";
+//============================
+
+const TopNavbar = () => {
+  return (
+    <>
+      <Navbar bg="dark" variant="dark" expand="md">
+        <Container>
+          <Navbar.Brand href="/home">
+            <Book /> کتاب آنلاین
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Link className="nav-link active " to="/home">
+                <MdHome className="icon" /> خانه
+              </Link>
+              <Link className="nav-link " to="/register">
+                <TiEdit className="icon" /> ثبت نام
+              </Link>
+              <Link className="nav-link " to="/login">
+                <MdLogin className="icon" /> ورود
+              </Link>
+              <Link className="nav-link " to="/storeroom">
+                <TiClipboard className="icon" /> سامانه انبار
+              </Link>
+              <Link className="nav-link " to="/lastProductsAdded">
+                <TiClipboard className="icon" /> اخرین محصولات
+              </Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
+  );
+};
+
+export default TopNavbar;
