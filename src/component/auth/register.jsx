@@ -39,12 +39,8 @@ class Register extends Component {
       })
       .catch((err) => {
         console.log("Axios Erroes:", err);
+        this.setState({ message: " این ایمیل قبلا ثبت شده است" });
       });
-
-    if (this.state.errors.length !== 0) {
-      this.setState({ accunt: "" });
-      console.log("unvalid data");
-    }
   };
 
   handelChenge = (e) => {
@@ -76,17 +72,7 @@ class Register extends Component {
       this.setState({ errors });
     }
   };
-  // componentDidMount() {
-  //   axios
-  //     .get("http://localhost:4000/api/auth/register")
-  //     .then((res) => {
-  //       console.log("didmount", res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("didmount Errores", err);
-  //     });
-  // }
-  //---------------------------
+
   render() {
     const { userName, email, password } = this.state.accunt;
     return (

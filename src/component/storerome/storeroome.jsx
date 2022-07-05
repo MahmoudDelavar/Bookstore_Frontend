@@ -43,10 +43,12 @@ class Storeroom extends Component {
       })
       .then((res) => {
         console.log("Axios successfuly send", res);
-
         this.setState({ message: res.data.message });
       })
-      .catch((err) => console.log("Axios Erroes(storeroome):", err));
+      .catch((err) => {
+        console.log("Axios Erroes(storeroome):", err);
+        this.setState({ message: "این کتاب قبلا ثبت شده است" });
+      });
 
     if (this.state.errors.length !== 0) {
       this.setState({ product: "" });

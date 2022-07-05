@@ -16,7 +16,7 @@ class Login extends Component {
       password: "",
     },
     errors: [],
-    axiosMessage: [],
+    message: [],
   };
   //---------handel functions------------------
   handelSubmit = async (e) => {
@@ -26,14 +26,15 @@ class Login extends Component {
     console.log("state:", this.state.accunt);
     axios
       .post("http://localhost:4000/api/auth/login", {
-        email: this.state.email,
-        password: this.state.password,
+        email: this.state.accunt.email,
+        password: this.state.accunt.password,
       })
       .then((res) => {
-        this.setState({ axiosMessage: res.data.message });
+        this.setState({ message: res.data.message });
       })
       .catch((err) => {
         console.log("axiosErrore!: ", err);
+        this.setState({ message: " رمز عبور و یا ایمیل صحیح نیست" });
       });
   };
 
@@ -97,13 +98,13 @@ class Login extends Component {
                   )}
                 </div>
                 <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 ">
-                  {this.state.axiosMessage.length !== 0 && (
-                    <div className="alert alert-warning mb-3">
+                  {this.state.message.length !== 0 && (
+                    <div className="alert alert-saccess mb-3">
                       <ul
                         className="text-center  fw-bold"
                         style={{ listStyle: "none" }}
                       >
-                        {this.state.axiosMessage}
+                        {this.state.message}
                       </ul>
                     </div>
                   )}
