@@ -18,7 +18,7 @@ class Register extends Component {
         password: "",
       },
       errors: [],
-      axiosMessage: [],
+      message: [],
     };
   }
   //---------handel functions------------------
@@ -35,7 +35,7 @@ class Register extends Component {
       })
       .then((res) => {
         console.log("Axios successfuly send", res);
-        this.setState({ axiosMessage: res.data.message });
+        this.setState({ message: res.data.message });
       })
       .catch((err) => {
         console.log("Axios Erroes:", err);
@@ -114,25 +114,19 @@ class Register extends Component {
                     </div>
                   )}
                   <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                    {this.state.axiosMessage.length !== 0 && (
-                      <div className="alert alert-warning">
+                    {this.state.message.length !== 0 && (
+                      <div className="alert alert-saccess">
                         <ul
                           className="text-center"
                           style={{ listStyle: "none", textAlign: "center" }}
                         >
-                          {this.state.axiosMessage}
+                          {this.state.message}
                         </ul>
                       </div>
                     )}
                   </div>
                 </div>
-                {/* <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                  className="img-fluid h-100"
-                  alt="register Image"
-                />
-              </div> */}
+
                 <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6">
                   <form action="#">
                     <InputComponent

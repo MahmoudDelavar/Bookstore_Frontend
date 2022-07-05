@@ -14,10 +14,12 @@ class Storeroom extends Component {
       title: "",
       writer: "",
       count: "0",
+      explan: "",
       pric: "0",
       category: "",
     },
     errors: [],
+    message: [],
   };
   //---------handel functions------------------
   handelSubmit = async (e) => {
@@ -36,8 +38,14 @@ class Storeroom extends Component {
         writer: this.state.product.writer,
         count: this.state.product.count,
         pric: this.state.product.pric,
+        category: this.state.product.category,
+        explan: this.state.product.explan,
       })
-      .then((res) => console.log("Axios successfuly send", res))
+      .then((res) => {
+        console.log("Axios successfuly send", res);
+
+        this.setState({ message: res.data.message });
+      })
       .catch((err) => console.log("Axios Erroes(storeroome):", err));
 
     if (this.state.errors.length !== 0) {
@@ -54,8 +62,10 @@ class Storeroom extends Component {
   };
   //----------validation-----------------
   schema = yup.object().shape({
-    title: yup.string().required("عنوان کتاب را وارد کنید "),
-    writer: yup.string().required("نویسنده کتاب را وارد کنید "),
+    title: yup.string().required("عنوان کتابو ثبت نکردی "),
+    writer: yup.string().required("نویسنده کتاب کیه؟ "),
+    explan: yup.string().required("یکم توضیحاتم بنویسی بد نیست "),
+    category: yup.string().required("دسته بندی نمیخاد ؟!! "),
     count: yup
       .number()
       .min(1, "تعداد صحیح نیست")
@@ -77,7 +87,7 @@ class Storeroom extends Component {
   };
   //---------------------------
   render() {
-    const { title, writer, count, pric } = this.state.product;
+    const { title, writer, count, pric, category, explan } = this.state.product;
     return (
       <>
         <div className="row justify-content-md-center">
@@ -102,6 +112,18 @@ class Storeroom extends Component {
                     {this.state.errors.map((e, index) => (
                       <li key={index}>{e}</li>
                     ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+              {this.state.message.length !== 0 && (
+                <div className="alert alert-success">
+                  <ul
+                    className="text-center"
+                    style={{ listStyle: "none", textAlign: "center" }}
+                  >
+                    {this.state.message}
                   </ul>
                 </div>
               )}
@@ -142,6 +164,22 @@ class Storeroom extends Component {
                 type="number"
                 lable="قیمت"
                 value={pric}
+                onChange={this.handelChenge}
+                icon={<MdEuroSymbol />}
+              />
+              <ProductInput
+                name="category"
+                type="text"
+                lable="دسته بندی"
+                value={category}
+                onChange={this.handelChenge}
+                icon={<MdEuroSymbol />}
+              />
+              <ProductInput
+                name="explan"
+                type="text"
+                lable="توضیحات "
+                value={explan}
                 onChange={this.handelChenge}
                 icon={<MdEuroSymbol />}
               />
