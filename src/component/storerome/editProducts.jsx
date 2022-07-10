@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import InputBookInfo from "../imputComponent/InputBookInfo";
 import CardComponent from "../products/cardComponent";
 
 class EditProducts extends Component {
@@ -53,18 +54,38 @@ class EditProducts extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-sm-12 col-md-6 mb-3">
-              <span> {this.state.msg}</span>
-              {this.state.books != "" &&
-                this.state.books.map((u, index) => (
-                  <CardComponent
-                    key={index}
-                    title={u.title}
-                    writer={u.writer}
-                    explan={u.explan}
-                    pric={u.pric}
-                  />
-                ))}
+            <div className="row jusfiy-content-center">
+              <div className="col-sm-12 col-md-6 mb-3">
+                {this.state.books != "" &&
+                  this.state.books.map((u, index) => (
+                    <>
+                      {this.state.books != "" &&
+                        this.state.books.map((u, index) => (
+                          <InputBookInfo
+                            key={index}
+                            title={u.title}
+                            writer={u.writer}
+                            explan={u.explan}
+                            pric={u.pric}
+                            categury={u.categury}
+                          />
+                        ))}
+                    </>
+                  ))}
+              </div>
+              <div className="col-sm-12 col-md-6 mb-3">
+                <span> {this.state.msg}</span>
+                {this.state.books != "" &&
+                  this.state.books.map((u, index) => (
+                    <CardComponent
+                      key={index}
+                      title={u.title}
+                      writer={u.writer}
+                      explan={u.explan}
+                      pric={u.pric}
+                    />
+                  ))}
+              </div>
             </div>
           </div>
         </div>

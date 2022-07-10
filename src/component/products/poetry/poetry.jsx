@@ -10,7 +10,6 @@ class Poetry extends Component {
       .get("http://localhost:4000/api/storeroom?category=شعر")
       .then((res) => {
         const books = res.data.data;
-
         this.setState({ books });
         console.log("Axios_get:", books);
         console.log("state is:", this.state.books);
