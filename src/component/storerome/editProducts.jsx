@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { Component } from "react";
+import EditBookInfo from "../imputComponent/editBookInput";
 import InputBookInfo from "../imputComponent/InputBookInfo";
+import BookContext from "../../contexts/bookContext";
+
 import CardComponent from "../products/cardComponent";
 
 class EditProducts extends Component {
@@ -55,25 +58,18 @@ class EditProducts extends Component {
               </div>
             </div>
             <div className="row jusfiy-content-center">
-              <div className="col-sm-12 col-md-6 mb-3">
+              <div className="col-sm-6 col-md-6 mb-3">
                 {this.state.books != "" &&
                   this.state.books.map((u, index) => (
                     <>
                       {this.state.books != "" &&
                         this.state.books.map((u, index) => (
-                          <InputBookInfo
-                            key={index}
-                            title={u.title}
-                            writer={u.writer}
-                            explan={u.explan}
-                            pric={u.pric}
-                            categury={u.categury}
-                          />
+                          <EditBookInfo bookName={this.state.bookName} />
                         ))}
                     </>
                   ))}
               </div>
-              <div className="col-sm-12 col-md-6 mb-3">
+              <div className=" col-sm-6 col-md-6 mb-3 ">
                 <span> {this.state.msg}</span>
                 {this.state.books != "" &&
                   this.state.books.map((u, index) => (
@@ -83,6 +79,7 @@ class EditProducts extends Component {
                       writer={u.writer}
                       explan={u.explan}
                       pric={u.pric}
+                      categury={u.categury}
                     />
                   ))}
               </div>

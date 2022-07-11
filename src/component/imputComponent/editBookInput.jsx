@@ -6,9 +6,9 @@ import { AiOutlineFieldNumber } from "react-icons/ai";
 import ProductInput from "./inputComponent";
 import * as yup from "yup";
 import axios from "axios";
-
+import BookContext from "../../contexts/bookContext";
 //==============================================================
-class InputBookInfo extends Component {
+class EditBookInfo extends Component {
   state = {
     product: {
       title: "",
@@ -21,6 +21,8 @@ class InputBookInfo extends Component {
     errors: [],
     message: [],
   };
+  bookName = this.props.bookName.value;
+
   //---------handel functions------------------
   handelSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ class InputBookInfo extends Component {
     console.log("msg from submit:", this.state.product);
 
     axios
-      .put("http://localhost:4000/api/storeroom/:${bookName}", {
+      .put(`http://localhost:4000/api/storeroom?title=${this.bookName}`, {
         title: this.state.product.title,
         writer: this.state.product.writer,
         count: this.state.product.count,
@@ -46,8 +48,8 @@ class InputBookInfo extends Component {
         this.setState({ message: res.data.message });
       })
       .catch((err) => {
-        console.log("Axios Erroes(storeroome):", err);
-        this.setState({ message: "این کتاب قبلا ثبت شده است" });
+        console.log("Axios Erroes(editbookinputs):", err);
+        this.setState({ message: "ویرایش انجام نشد " });
       });
 
     if (this.state.errors.length !== 0) {
@@ -88,6 +90,8 @@ class InputBookInfo extends Component {
     }
   };
   //---------------------------
+
+  //---------------------------
   render() {
     const { title, writer, count, pric, category, explan } = this.state.product;
     return (
@@ -125,6 +129,7 @@ class InputBookInfo extends Component {
               className="col-sm-12 col-md-6 col-lg-8 "
               style={{ backgroundColor: " #eee", borderRadius: "25" }}
             >
+              <h3>ویرایش اطلاعات </h3>
               <ProductInput
                 name="title"
                 type="text"
@@ -194,8 +199,7 @@ class InputBookInfo extends Component {
                   onClick={this.handelSubmit}
                   className="btn btn-success btn-sm mb-2"
                 >
-                  {" "}
-                  ثبت محصول
+                  ویرایش
                 </button>
               </div>
             </div>
@@ -206,4 +210,4 @@ class InputBookInfo extends Component {
   }
 }
 
-export default InputBookInfo;
+export default EditBookInfo;

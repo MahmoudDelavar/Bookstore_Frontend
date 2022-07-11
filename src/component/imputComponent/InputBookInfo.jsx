@@ -44,6 +44,7 @@ class InputBookInfo extends Component {
       .then((res) => {
         console.log("Axios successfuly send", res);
         this.setState({ message: res.data.message });
+        this.setState({ product: "" });
       })
       .catch((err) => {
         console.log("Axios Erroes(storeroome):", err);
