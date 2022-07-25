@@ -22,6 +22,9 @@ function registerUser(state = initionalState, action) {
 
     case REGISTER_USER_FAILED:
       return { isLoading: false, user: "", message: "", err: action.err };
+
+    default:
+      return state;
   }
 }
 

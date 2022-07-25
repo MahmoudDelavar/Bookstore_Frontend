@@ -11,6 +11,8 @@ import Copyright from "./component/footer/copyright";
 import ForgetPass from "./component/auth/ForgetPass";
 import LastProductsAdded from "./component/loadFromDatabase/LastProductsAdded";
 import LoginUser from "./component/auth/loginUser";
+import RegisterUser from "./component/auth/registerUser";
+
 //============================
 
 const App = () => {
@@ -23,7 +25,9 @@ const App = () => {
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/login" element={<LoginUser />} />
 
-        <Route path="/register" element={<Register />} />
+        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/register" element={<RegisterUser />} />
+
         <Route path="/storeroom" element={<Storeroom />} />
         <Route path="/forgetPass" element={<ForgetPass />} />
         <Route path="/lastProductsAdded" element={<LastProductsAdded />} />

@@ -7,7 +7,7 @@ import { MdAccountCircle, MdVpnKey } from "react-icons/md";
 import * as yup from "yup";
 import axios from "axios";
 
-//============================
+//=============================================================
 
 class Login extends Component {
   state = {
