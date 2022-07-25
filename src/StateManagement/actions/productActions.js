@@ -1,5 +1,4 @@
 import axios from "axios";
-import store from "../store";
 
 import {
   GET_ALL_DATA_REQUEST,
@@ -10,7 +9,7 @@ import {
   POST_DATA_FAILED,
 } from "./actionTypes";
 
-//------------grt all product - POST ---------------------
+//------------get products actions ---------------------
 export const productRequest = () => ({
   type: GET_ALL_DATA_REQUEST,
 });
@@ -36,7 +35,7 @@ export const getAllProducts = (dispatch) => {
       dispatch(productDataFaied(err.message));
     });
 };
-//------------Add product - POST ---------------------
+//------------Add product actions - POST ---------------------
 export const postDatRequest = (data) => ({
   type: POST_DATA_REQUEST,
   payload: data,
@@ -49,7 +48,6 @@ export const postDataFailed = (err) => ({
   type: POST_DATA_FAILED,
   payload: err,
 });
-store.getState();
 
 export const addProduct = (data) => {
   return function (dispatch) {

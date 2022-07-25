@@ -2,7 +2,7 @@ import {
   GET_ALL_DATA_REQUEST,
   GET_ALL_DATA_SUCCESS,
   GET_ALL_DATA_FAILED,
-} from "../actions/actionTypes";
+} from "../../actions/actionTypes";
 
 const initionalState = {
   isLoading: false,

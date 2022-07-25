@@ -2,7 +2,7 @@ import {
   POST_DATA_REQUEST,
   POST_DATA_SUCCESS,
   POST_DATA_FAILED,
-} from "../actions/actionTypes";
+} from "../../actions/actionTypes";
 
 const initionalState = {
   data: [],
