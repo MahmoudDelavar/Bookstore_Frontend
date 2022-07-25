@@ -8,8 +8,7 @@ import {
   REGISTER_USER_FAILED,
 } from "./actionTypes";
 
-//------------Login product actions ---------------------
-
+//------------Login User actions ---------------------
 export const loginUserRquest = (email, password) => ({
   type: LOGIN_USER_REQUEST,
   email: email,
@@ -37,12 +36,44 @@ export const loginUser = (email, password) => {
         password: password,
       })
       .then((res) => {
-        const token = res.data.token;
-        const message = res.data.message;
+        // const token = res.data.token;
+        // const message = res.data.message;
+        const { token, message } = res.data;
         dispach(loginUserSuccess(token, message));
       })
       .catch((err) => {
         dispach(loginUserFailed(err));
       });
+  };
+};
+
+//------------Register User actions ---------------------
+
+export const registerUserRequest = (user) => ({
+  type: REGISTER_USER_REQUEST,
+  user: user,
+});
+
+export const registerUserSuccess = (message) => ({
+  type: REGISTER_USER_SUCCESS,
+  message: message,
+});
+
+export const registerUserFailed = (err) => ({
+  type: REGISTER_USER_FAILED,
+  err: err,
+});
+
+export const registerUser = (user) => {
+  return (dispach) => {
+    dispach(registerUserRequest(user));
+    const apiUrl = "http://localhost:4000/api/auth/register";
+    axios
+      .post(apiUrl, user)
+      .then((res) => {
+        const message = res.data.message;
+        dispach(registerUserSuccess(message));
+      })
+      .catch((err) => dispach(registerUserFailed(err)));
   };
 };
