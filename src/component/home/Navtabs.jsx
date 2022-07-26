@@ -12,7 +12,12 @@ const NavTab = () => {
           className="row justify-content-center"
           style={{ overflowY: "hidden" }}
         >
-          <Tabs defaultActiveKey="Psychology" id="homeNave" className="mb-3 ">
+          <Tabs
+            fill
+            defaultActiveKey="Psychology"
+            id="homeNave"
+            className="mb-3 "
+          >
             <Tab eventKey="Psychology" title="روانشناسی">
               <Psychology />
             </Tab>

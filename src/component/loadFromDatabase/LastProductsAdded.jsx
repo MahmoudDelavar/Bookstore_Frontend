@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { Component } from "react";
 import CardComponent from "../products/cardComponent";
-import EditProducts from "../storerome/editProducts";
+
+import EditProduct from "../storerome/editProduct";
+import ProductListBycategory from "../storerome/productListBycategory";
+
 //-------------------------------------------
 
 class LastProductsAdded extends Component {
@@ -12,7 +15,7 @@ class LastProductsAdded extends Component {
   render() {
     return (
       <>
-        <EditProducts />
+        <EditProduct />
       </>
     );
   }

@@ -7,7 +7,7 @@ class Romance extends Component {
   };
   componentDidMount() {
     axios
-      .get("http://localhost:4000/api/storeroom?category=شعر")
+      .get("http://localhost:4000/api/storeroom?category=رمان")
       .then((res) => {
         const books = res.data.data;
 
