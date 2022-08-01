@@ -87,7 +87,7 @@ const LoginUser = ({ loginUser, message, err }) => {
             </section>
           </div>
           <div className="col-md-6 ">
-            <p style={{ color: "black" }}>L</p>
+            <p style={{ color: "red" }}>L</p>
           </div>
         </div>
       </div>
