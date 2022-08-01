@@ -1,0 +1,65 @@
+.main-login {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  min-height: 500px;
+  justify-content: center;
+  background-image: url(../../../media/book_Banner/login.jpeg);
+  background-repeat: no-repeat;
+  background-color: rgb(0, 0, 0);
+  background-size: contain;
+  text-align: center;
+}
+
+.form {
+  background-color: rgba(251, 252, 253, 0.185);
+  color: rgb(170, 170, 170);
+  border-radius: 20px;
+  padding: 20px;
+  margin-right: auto;
+  margin-top: 30px;
+  text-align: right;
+  /* box-shadow: 5px 2px 15px rgba(255, 255, 255, 0.37); */
+}
+
+.login-icon {
+  font-size: 25px;
+  color: rgb(129, 129, 129);
+}
+
+.logo-login {
+  color: aliceblue;
+  font-size: 40px;
+}
+.login-title {
+  color: aliceblue;
+  font-size: 25px;
+  margin-left: 5px;
+}
+
+.form-box {
+  background-color: rgba(251, 252, 253, 0.089);
+  margin: 20px;
+  border-radius: 35px;
+  box-shadow: 5px 2px 15px rgba(255, 255, 255, 0.37);
+}
+
+.loginBy {
+  font-size: 25px;
+  margin-left: 10px;
+}
+.logonByText {
+  font-size: 20px;
+  color: rgb(175, 175, 175);
+}
+.logonByLogo {
+  font-size: 40px;
+  color: rgb(175, 175, 175);
+  margin-left: 10px;
+}
+.logonByLogo:hover {
+  background-color: rgb(109, 109, 109);
+  color: rgb(255, 255, 255);
+  transition: 0.5s;
+  box-shadow: 0px 0px 10px whitesmoke;
+}

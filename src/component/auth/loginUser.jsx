@@ -1,6 +1,15 @@
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../StateManagement/actions/userActions";
+import {
+  IoMdKey,
+  IoMdMail,
+  IoIosLogIn,
+  IoLogoFacebook,
+  IoLogoGoogle,
+  IoLogoLinkedin,
+} from "react-icons/io";
+import "./styles/loginStyle.css";
 //========================================
 
 const LoginUser = ({ loginUser, message, err }) => {
@@ -15,37 +24,70 @@ const LoginUser = ({ loginUser, message, err }) => {
 
   return (
     <>
-      <h4>login Use page</h4>
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div>
-              <h1>{message}</h1>
-            </div>
-            <form action="" onSubmit={(e) => handelSubmit(e)}>
-              <span>مشخصات</span>
-              <div className="form-group mb-3">
-                <label className="form-group" htmlFor="email">
-                  ایمیل
-                </label>
-                <input type="email" className="form-control " name="email" />
+      <div className="container- ">
+        <div className="row main-login">
+          <div className="col-sm-9 col-md-6 col-lg-5 col-xl-3 form-box ">
+            <section>
+              <div className=" ">
+                <span className="login-title">Login</span>
+                <IoIosLogIn className="logo-login" />
               </div>
-              <div className="form-group mb-3">
-                <label className="form-group" htmlFor="password">
-                  کلمه عبور
-                </label>
-                <input
-                  type="password"
-                  className="form-control "
-                  name="password"
-                />
-              </div>
-              <div className="form-group mb-3">
-                <button className="btn btn-info btn-sm" type="submit">
-                  ورود
-                </button>
-              </div>
-            </form>
+            </section>
+
+            <section className="loginBy">
+              <span className="logonByText">ورود با </span>
+              <br />
+              <Link to="/#">
+                <IoLogoFacebook className="logonByLogo" />
+              </Link>
+              <Link to="/#">
+                <IoLogoGoogle className="logonByLogo" />
+              </Link>
+              <Link to="/#">
+                <IoLogoLinkedin className="logonByLogo" />
+              </Link>
+            </section>
+
+            <section>
+              <form
+                className="form"
+                action=""
+                onSubmit={(e) => handelSubmit(e)}
+              >
+                <label htmlFor="email-label">ایمیل</label>
+                <div className="input-group mb-3">
+                  <span className="input-group-text">
+                    <IoMdMail className="login-icon" />
+                  </span>
+                  <input
+                    type="email"
+                    className="form-control "
+                    name="email"
+                    id="email-label"
+                  />
+                </div>
+                <label htmlFor="pass-label">کلمه عبور</label>
+                <div className="input-group mb-3">
+                  <span className="input-group-text ">
+                    <IoMdKey className="login-icon" />
+                  </span>
+                  <input
+                    type="password"
+                    className="form-control "
+                    name="password"
+                    id="pass-label"
+                  />
+                </div>
+                <div className=" d-grid ">
+                  <button className="btn btn-secondary" type="submit">
+                    ورود
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+          <div className="col-md-6 ">
+            <p style={{ color: "black" }}>L</p>
           </div>
         </div>
       </div>
