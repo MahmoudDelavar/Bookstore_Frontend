@@ -23,11 +23,9 @@ const App = () => {
         <Route exaxt path="/home" element={<Home />} />
         <Route exaxt path="/" element={<Home />} />
         {/* <Route path="/login" element={<Login />} /> */}
-        <Route path="/login" element={<LoginUser />} />
-
         {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/login" element={<LoginUser />} />
         <Route path="/register" element={<RegisterUser />} />
-
         <Route path="/storeroom" element={<Storeroom />} />
         <Route path="/forgetPass" element={<ForgetPass />} />
         <Route path="/lastProductsAdded" element={<LastProductsAdded />} />

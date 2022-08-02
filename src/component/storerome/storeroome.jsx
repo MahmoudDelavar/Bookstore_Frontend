@@ -19,7 +19,6 @@ class Storeroom extends Component {
           </div>
         </div>
         <Addproduct />
-        {/* <LastProductsAdded /> */}
       </>
     );
   }

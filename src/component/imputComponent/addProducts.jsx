@@ -1,15 +1,17 @@
 import { connect } from "react-redux";
 import { addProduct } from "../../StateManagement/actions/productActions";
 import "./addProducts.css";
-
+import * as yup from "yup";
 import { Book } from "react-bootstrap-icons";
 import { IoMdCreate } from "react-icons/io";
 import { MdEuroSymbol } from "react-icons/md";
 import { AiOutlineFieldNumber } from "react-icons/ai";
 import { ImImage, ImList2, ImFileText2 } from "react-icons/im";
+import { useState } from "react";
+
 //========================================
 const Addproduct = ({ addProduct, message }) => {
-  const save = (event) => {
+  const save = async (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
     const img = form.get("img");
@@ -19,13 +21,82 @@ const Addproduct = ({ addProduct, message }) => {
     const pric = form.get("pric");
     const explan = form.get("explan");
     const category = form.get("category");
-    addProduct({ title, writer, count, pric, explan, category, img });
-    alert("محصول ثبت شد ");
-    event.target.reset();
+    const bookInfo = { title, writer, count, pric, explan, category, img };
+    const result = await validate(bookInfo);
+    if (result) {
+      addProduct({ title, writer, count, pric, explan, category, img });
+      setMsg(["محصول با موفقیت ثبت شد "]);
+      setErr("");
+      event.target.reset();
+    } else {
+      console.log("validate bookInfo", result);
+      setMsg("");
+    }
   };
+
+  //----------validation input-----------------
+  const schema = yup.object().shape({
+    title: yup.string().required(" عنوان کتاب را وارد کنید "),
+    writer: yup.string().required(" نوسنده  را وارد کنید  "),
+    explan: yup.string().required("  توضیحاتی درمورد کتاب بنویسید"),
+    category: yup.string().required(" دسته بندی را انتخاب کنید  "),
+    count: yup
+      .number("تعداد صحیح نیست")
+      .required("تعداد را وارد کنید  ")
+      .positive("تعداد صحیح نیست")
+      .integer("تعداد صحیح نیست")
+      .min(1, "تعداد صحیح نیست"),
+    pric: yup
+      .number("قیمت صحیح نیست ")
+      .required(" قیمت را وارد کنید ")
+      .positive("قیمت صحیح نیست "),
+  });
+
+  const validate = async (bookInfo) => {
+    try {
+      const result = await schema.validate(bookInfo, { abortEarly: false });
+      return result;
+    } catch (error) {
+      console.log(error.errors);
+      setErr(error.errors);
+    }
+  };
+  //---------- End validation input-----------------
+  const [msg, setMsg] = useState([]);
+  const [err, setErr] = useState([]);
   return (
     <>
       <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
+            {err.length !== 0 && (
+              <div className="alert alert-danger mb-3">
+                <ul
+                  className="text-center  fw-bold"
+                  style={{ listStyle: "none" }}
+                >
+                  {err.map((e, index) => (
+                    <li key={index}>{e}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
+            {msg.length !== 0 && (
+              <div className="alert alert-success mb-3">
+                <ul
+                  className="text-center  fw-bold"
+                  style={{ listStyle: "none" }}
+                >
+                  {msg.map((e, index) => (
+                    <li key={index}>{e}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
         <div className="row justify-content-center box">
           <div className="col-sm-12 col-md-9 col-lg-6  ">
             <h6 className="text-center">افزودن محصول</h6>
@@ -80,6 +151,7 @@ const Addproduct = ({ addProduct, message }) => {
                   className="form-control "
                   name="count"
                   id="count-label"
+                  defaultValue={0}
                 />
               </div>
               <label htmlFor="pric-label"> قیمت</label>
@@ -92,6 +164,7 @@ const Addproduct = ({ addProduct, message }) => {
                   className="form-control "
                   name="pric"
                   id="pric-label"
+                  defaultValue={0}
                 />
               </div>
 
