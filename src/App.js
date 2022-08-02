@@ -9,10 +9,10 @@ import Storeroom from "./component/storerome/storeroome";
 import Footers from "./component/footer/footer";
 import Copyright from "./component/footer/copyright";
 import ForgetPass from "./component/auth/ForgetPass";
-import LastProductsAdded from "./component/loadFromDatabase/LastProductsAdded";
+
 import LoginUser from "./component/auth/loginUser";
 import RegisterUser from "./component/auth/registerUser";
-
+import LastProductsAdded from "./component/storerome/LastProductsAdded";
 //============================
 
 const App = () => {

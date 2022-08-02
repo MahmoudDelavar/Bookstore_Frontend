@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import InputBookInfo from "../imputComponent/InputBookInfo";
 import Addproduct from "../imputComponent/addProducts";
+import LastProductsAdded from "./LastProductsAdded";
+
 //==============================================================
 class Storeroom extends Component {
   render() {
@@ -16,8 +18,8 @@ class Storeroom extends Component {
             />
           </div>
         </div>
-
         <Addproduct />
+        {/* <LastProductsAdded /> */}
       </>
     );
   }
