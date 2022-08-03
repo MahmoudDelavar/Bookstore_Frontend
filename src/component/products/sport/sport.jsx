@@ -19,6 +19,14 @@ class Sport extends Component {
   render() {
     return (
       <>
+        {this.state.books.length == 0 && (
+          <div className="alert alert-danger text-center">
+            <h6>
+              هیچ رکوردی در دسته بندی ورزشی یافت نشد ، لطفا از قسمت سامانه انبار
+              یک محصول به این دسته بندی اضافه نمایید
+            </h6>
+          </div>
+        )}
         <div className="d-flex">
           {this.state.books.map((u, index) => (
             <CardComponent

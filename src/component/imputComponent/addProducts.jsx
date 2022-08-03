@@ -25,11 +25,10 @@ const Addproduct = ({ addProduct, message }) => {
     const result = await validate(bookInfo);
     if (result) {
       addProduct({ title, writer, count, pric, explan, category, img });
-      setMsg(["محصول با موفقیت ثبت شد "]);
+      setMsg([message]);
       setErr("");
       event.target.reset();
     } else {
-      console.log("validate bookInfo", result);
       setMsg("");
     }
   };
