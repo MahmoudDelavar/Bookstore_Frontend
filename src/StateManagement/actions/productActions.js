@@ -57,12 +57,12 @@ export const addProduct = (data) => {
       .post(apiUrl, data)
       .then((res) => {
         const msg = res.data.message;
-        dispatch(productDataSuccess(msg));
-        console.log("msg-productAtions_data:", data);
+        dispatch(postDataSuccess(msg));
+        console.log("Send Data success", msg);
       })
       .catch((err) => {
-        dispatch(productDataFaied(err));
-        console.log("Asios FAIED");
+        dispatch(postDataFailed(err));
+        console.log("Send Data FAIED", err);
       });
   };
 };

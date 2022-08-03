@@ -8,9 +8,15 @@ import { MdEuroSymbol } from "react-icons/md";
 import { AiOutlineFieldNumber } from "react-icons/ai";
 import { ImImage, ImList2, ImFileText2 } from "react-icons/im";
 import { useState } from "react";
+import { useEffect } from "react";
 
 //========================================
 const Addproduct = ({ addProduct, message }) => {
+  useEffect(() => {
+    if (!err) {
+      setMsg(message);
+    }
+  });
   const save = async (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
@@ -25,9 +31,8 @@ const Addproduct = ({ addProduct, message }) => {
     const result = await validate(bookInfo);
     if (result) {
       addProduct({ title, writer, count, pric, explan, category, img });
-      setMsg([message]);
-      setErr("");
       event.target.reset();
+      setErr("");
     } else {
       setMsg("");
     }
@@ -67,8 +72,8 @@ const Addproduct = ({ addProduct, message }) => {
     <>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
-            {err.length !== 0 && (
+          {err.length !== 0 && (
+            <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
               <div className="alert alert-danger mb-3">
                 <ul
                   className="text-center  fw-bold"
@@ -79,22 +84,20 @@ const Addproduct = ({ addProduct, message }) => {
                   ))}
                 </ul>
               </div>
-            )}
-          </div>
-          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
-            {msg.length !== 0 && (
-              <div className="alert alert-success mb-3">
+            </div>
+          )}
+          {msg && (
+            <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
+              <div className="alert  mb-3">
                 <ul
                   className="text-center  fw-bold"
                   style={{ listStyle: "none" }}
                 >
-                  {msg.map((e, index) => (
-                    <li key={index}>{e}</li>
-                  ))}
+                  {msg}
                 </ul>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         <div className="row justify-content-center box">
           <div className="col-sm-12 col-md-9 col-lg-6  ">
@@ -179,7 +182,9 @@ const Addproduct = ({ addProduct, message }) => {
                   name="category"
                   id="category-label"
                 >
-                  <option selected>انتخاب کنید</option>
+                  <option selected value="">
+                    انتخاب کنید
+                  </option>
                   <option value="روانشناسی">روانشناسی</option>
                   <option value="رمان">رمان</option>
                   <option value="ورزشی">ورزشی</option>
@@ -217,7 +222,7 @@ const Addproduct = ({ addProduct, message }) => {
 
 const mapStateToProps = (state) => {
   return {
-    message: state.addProductState.message,
+    message: state.addProductState.msg,
   };
 };
 

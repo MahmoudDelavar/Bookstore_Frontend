@@ -17,7 +17,7 @@ const addProductReducer = (state = initionalState, action) => {
     case POST_DATA_SUCCESS:
       return { data: [], err: "", msg: action.payload };
     case POST_DATA_FAILED:
-      return { data: [], err: action.payload, msg: "" };
+      return { data: [], err: action.err, msg: "" };
     default:
       return state;
   }
