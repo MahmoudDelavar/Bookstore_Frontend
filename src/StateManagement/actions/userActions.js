@@ -69,8 +69,13 @@ export const registerUser = (user) => {
       .post(apiUrl, user)
       .then((res) => {
         const message = res.data.message;
+        console.log("msg from backend", message);
         dispach(registerUserSuccess(message));
       })
-      .catch((err) => dispach(registerUserFailed(err)));
+      .catch((err) => {
+        const errs = "این ایمیل قبلا ثبت شده است";
+        dispach(registerUserFailed(errs));
+        console.log("Send Data FAIED", err);
+      });
   };
 };

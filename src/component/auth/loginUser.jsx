@@ -11,8 +11,8 @@ import {
   IoLogoLinkedin,
 } from "react-icons/io";
 import "./styles/loginStyle.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
 //========================================
 
 const LoginUser = ({ loginUser, message, err }) => {
