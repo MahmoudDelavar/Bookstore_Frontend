@@ -6,19 +6,17 @@ import {
 
 const initionalState = {
   isLoading: false,
-  token: "",
   message: "",
   err: "",
 };
 function loginUser(state = initionalState, action) {
   switch (action.type) {
     case LOGIN_USER_REQUEST:
-      return { isLoading: true, token: undefined, message: "", err: "" };
+      return { isLoading: true, message: "", err: "" };
 
     case LOGIN_USER_SUCCESS:
       return {
         isLoading: false,
-        token: action.token,
         message: action.message,
         err: "",
       };
@@ -26,7 +24,6 @@ function loginUser(state = initionalState, action) {
     case LOGIN_USER_FAILED:
       return {
         isLoading: false,
-        token: undefined,
         message: "",
         err: action.err,
       };

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../StateManagement/actions/userActions";
+import * as yup from "yup";
 import {
   IoMdKey,
   IoMdMail,
@@ -10,23 +11,97 @@ import {
   IoLogoLinkedin,
 } from "react-icons/io";
 import "./styles/loginStyle.css";
+import { useState } from "react";
+import { useEffect } from "react";
 //========================================
 
 const LoginUser = ({ loginUser, message, err }) => {
-  const handelSubmit = (e) => {
+  useEffect(() => {
+    if (!errs) {
+      setMsg(message);
+      setDbErrs(err);
+      console.log("DB errors", err);
+    }
+  });
+  // ------ Handel submit form -------------------
+  const handelSubmit = async (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
     const email = form.get("email");
     const password = form.get("password");
-    loginUser(email, password);
-    e.target.reset();
+    const userInfo = { email, password };
+    const isValid = await validate(userInfo);
+    if (isValid) {
+      loginUser({ email, password });
+      e.target.reset();
+      setErrs("");
+    } else {
+      setMsg("");
+      setDbErrs("");
+    }
   };
+
+  //----------validation-------------
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email("فرمت ایمیل صحیح نیست ")
+      .required("ایمیل را وارد کنید"),
+    password: yup.string().min(6, "پسورد باید حداقل 6 کاراکتر باشد"),
+  });
+
+  const validate = async (userInfo) => {
+    try {
+      const result = await schema.validate(userInfo, { abortEarly: false });
+      return result;
+    } catch (error) {
+      console.log(error.errors);
+      setErrs(error.errors);
+    }
+  };
+  //------------------------------------
+  const [msg, setMsg] = useState([]);
+  const [errs, setErrs] = useState([]);
+  const [dbErrs, setDbErrs] = useState([]);
 
   return (
     <>
       <div className="container- ">
         <div className="row main-login">
           <div className="col-sm-9 col-md-6 col-lg-5 col-xl-3 form-box ">
+            {/*-------------------  validation error box -------------------*/}
+            <section>
+              {errs.length !== 0 && (
+                <div className="alert alert-danger mb-3">
+                  <ul
+                    className="text-center success fw-bold"
+                    style={{ listStyle: "none" }}
+                  >
+                    {errs.map((e, index) => (
+                      <li key={index}>{e}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+
+            {/*-----------------  Databas error box ------------------*/}
+            <section>
+              {dbErrs && (
+                <div className="alert text-danger fadein ">
+                  <span>{dbErrs}</span>
+                </div>
+              )}
+            </section>
+
+            {/*------------------- Databas success msg box -------------------*/}
+            {msg && (
+              <div className="alert text-success  mb-3">
+                <span>{msg}</span>
+              </div>
+            )}
+
+            {/*-------------- Title --------------*/}
             <section>
               <div className=" ">
                 <span className="login-title">Login</span>
@@ -34,6 +109,7 @@ const LoginUser = ({ loginUser, message, err }) => {
               </div>
             </section>
 
+            {/*-------------- Login by Social Network --------------*/}
             <section className="loginBy">
               <span className="logonByText">ورود با </span>
               <br />
@@ -48,6 +124,7 @@ const LoginUser = ({ loginUser, message, err }) => {
               </Link>
             </section>
 
+            {/*-------------- Form inputs --------------*/}
             <section>
               <form
                 className="form"
@@ -94,7 +171,7 @@ const LoginUser = ({ loginUser, message, err }) => {
     </>
   );
 };
-
+//------------ handel redux functions----------------
 const mapStateToProps = (state) => {
   return {
     message: state.loginUserState.message,

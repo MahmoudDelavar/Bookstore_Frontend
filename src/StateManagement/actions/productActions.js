@@ -58,7 +58,7 @@ export const addProduct = (data) => {
       .then((res) => {
         const msg = res.data.message;
         dispatch(postDataSuccess(msg));
-        console.log("Send Data success", msg);
+        console.log("msg from backend", msg);
       })
       .catch((err) => {
         dispatch(postDataFailed(err));

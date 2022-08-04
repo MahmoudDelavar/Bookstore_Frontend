@@ -9,15 +9,13 @@ import {
 } from "./actionTypes";
 
 //------------Login User actions ---------------------
-export const loginUserRquest = (email, password) => ({
+export const loginUserRquest = (userInfo) => ({
   type: LOGIN_USER_REQUEST,
-  email: email,
-  password: password,
+  payload: userInfo,
 });
 
-export const loginUserSuccess = (token, message) => ({
+export const loginUserSuccess = (message) => ({
   type: LOGIN_USER_SUCCESS,
-  token: token,
   message: message,
 });
 
@@ -26,23 +24,22 @@ export const loginUserFailed = (err) => ({
   err: err,
 });
 
-export const loginUser = (email, password) => {
+export const loginUser = (userInfo) => {
   return (dispach) => {
-    dispach(loginUserRquest(email, password));
+    dispach(loginUserRquest(userInfo));
+    console.log("userInfo to send", userInfo);
     const apiUrl = "http://localhost:4000/api/auth/login";
     axios
-      .post(apiUrl, {
-        email: email,
-        password: password,
-      })
+      .post(apiUrl, userInfo)
       .then((res) => {
-        // const token = res.data.token;
-        // const message = res.data.message;
-        const { token, message } = res.data;
-        dispach(loginUserSuccess(token, message));
+        const message = res.data.message;
+        console.log("msg from backend:", message);
+        dispach(loginUserSuccess(message));
       })
       .catch((err) => {
-        dispach(loginUserFailed(err));
+        const errs = "رمز عبور ویا ایمیل صحیح نیست";
+        dispach(loginUserFailed(errs));
+        console.log("Send Data FAIED", err);
       });
   };
 };
