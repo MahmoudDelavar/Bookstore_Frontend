@@ -7,29 +7,38 @@ class Storeroom extends Component {
   render() {
     return (
       <>
-        <div className="row justify-content-center">
-          <div className="col-12 text-center">
-            <img
-              src="https://ithinklogistics.com/blog/wp-content/uploads/2019/12/functions-of-wms-1.jpg"
-              className="img-fluid"
-              alt="loading faild"
-            />
+        {/*------------------- image box ------------------- */}
+        <section>
+          <div className="row justify-content-center">
+            <div className="col-12 text-center">
+              <img
+                src="https://ithinklogistics.com/blog/wp-content/uploads/2019/12/functions-of-wms-1.jpg"
+                className="img-fluid"
+                alt="loading faild"
+              />
+            </div>
           </div>
-        </div>
-        <div className="row justify-content-around p-3  ">
-          <div className="col-5 text-center add">
-            <Link className="s-link" to="addproduct">
-              <FcAddDatabase className="s-icon" />
-              <span className="s-text"> اضافه کردن محصول</span>
-            </Link>
+        </section>
+
+        <section>
+          <div className="row justify-content-around p-3  ">
+            {/*------------------- add product box ------------------- */}
+            <div className="col-5 text-center add">
+              <Link className="s-link" to="addproduct">
+                <FcAddDatabase className="s-icon" />
+                <span className="s-text"> اضافه کردن محصول</span>
+              </Link>
+            </div>
+
+            {/*------------------- edit product box ------------------- */}
+            <div className="col-5 text-center edit">
+              <Link className="s-link" to="editproduct">
+                <FcEditImage className="s-icon" />
+                <span className="s-text"> ویرایش محصول</span>
+              </Link>
+            </div>
           </div>
-          <div className="col-5 text-center edit">
-            <Link className="s-link" to="editproduct">
-              <FcEditImage className="s-icon" />
-              <span className="s-text"> ویرایش محصول</span>
-            </Link>
-          </div>
-        </div>
+        </section>
       </>
     );
   }

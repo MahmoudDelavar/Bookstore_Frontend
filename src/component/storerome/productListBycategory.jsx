@@ -34,6 +34,12 @@ const ProductListByCategory = ({ category }) => {
                     <th>{item.explan}</th>
                     <th>{item.pric}</th>
                     <th>{item.count}</th>
+                    <th>
+                      <button className="btn btn-warning btn-sm">ویرایش</button>
+                    </th>
+                    <th>
+                      <button className="btn btn-danger btn-sm">حذف</button>
+                    </th>
                   </tr>
                 ))}
               </tbody>
