@@ -32,9 +32,6 @@ const TopNavbar = () => {
               <Link className="nav-link " to="/storeroom">
                 <TiClipboard className="icon" /> سامانه انبار
               </Link>
-              <Link className="nav-link " to="/lastProductsAdded">
-                <TiClipboard className="icon" /> اخرین محصولات
-              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

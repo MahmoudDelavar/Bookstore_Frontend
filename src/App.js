@@ -6,13 +6,13 @@ import Login from "./component/auth/login";
 
 import Register from "./component/auth/register";
 import Storeroom from "./component/storerome/storeroome";
+import EditProduct from "./component/storerome/editProduct";
 import Footers from "./component/footer/footer";
 import Copyright from "./component/footer/copyright";
 import ForgetPass from "./component/auth/ForgetPass";
-
 import LoginUser from "./component/auth/loginUser";
 import RegisterUser from "./component/auth/registerUser";
-import LastProductsAdded from "./component/storerome/LastProductsAdded";
+import AddProducts from "./component/imputComponent/addProducts";
 //============================
 
 const App = () => {
@@ -22,13 +22,12 @@ const App = () => {
       <Routes>
         <Route exaxt path="/home" element={<Home />} />
         <Route exaxt path="/" element={<Home />} />
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/register" element={<Register />} /> */}
         <Route path="/login" element={<LoginUser />} />
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/storeroom" element={<Storeroom />} />
         <Route path="/forgetPass" element={<ForgetPass />} />
-        <Route path="/lastProductsAdded" element={<LastProductsAdded />} />
+        <Route path="/storeroom/editproduct" element={<EditProduct />} />
+        <Route path="/storeroom/addproduct" element={<AddProducts />} />
       </Routes>
       <Footers />
       <Copyright />

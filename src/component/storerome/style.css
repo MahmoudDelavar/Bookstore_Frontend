@@ -1,0 +1,30 @@
+.add,
+.edit {
+  border-radius: 50%;
+  align-items: center;
+}
+
+.s-icon {
+  font-size: 100px;
+}
+.s-text {
+  font-size: 20px;
+  display: block;
+}
+.s-link {
+  text-decoration: none;
+  padding: 5px;
+  display: block;
+}
+.s-link:hover {
+  background-color: rgba(100, 132, 235, 0.534);
+  border-radius: 50%;
+  color: rgb(8, 55, 95);
+  transition: 0.7s;
+}
+.s-link:not(:hover) {
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.308);
+  border-radius: 50%;
+  transition: 1s;
+}
