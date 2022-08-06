@@ -1,13 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts } from "../../StateManagement/actions/productActions";
-//========================================
+import { Link } from "react-router-dom";
+import {
+  editProduct,
+  getAllProducts,
+  getOneProduct,
+} from "../../StateManagement/actions/productActions";
+import CardComponent from "../products/cardComponent";
+
+//================================sasda========
 
 const ProductListByCategory = ({ category }) => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.productState.data);
+  const books = useSelector((state) => state.allproductState.data);
+  const book = useSelector((state) => state.oneProductState.product);
   const bookFiltered = books.filter((books) => books.category == category);
-  useEffect(() => getAllProducts(dispatch), []);
+
+  useEffect(() => {
+    getAllProducts(dispatch);
+  }, []);
+  //--------------- handel Edit ---------------
+  const handelEdit = (title) => {
+    dispatch(getOneProduct(title));
+  };
+  //--------------- handel Remove ---------------
+  const removeProduct = (title) => {
+    console.log("remove", title);
+  };
+  //---------------------------------------------
+  const [bookinfo, setBookinfo] = useState([]);
   return (
     <>
       <div className="container">
@@ -35,11 +56,16 @@ const ProductListByCategory = ({ category }) => {
                     <th>{item.pric}</th>
                     <th>{item.count}</th>
                     <th>
-                      <button className="btn btn-warning btn-sm">ویرایش</button>
+                      <Link to="editProduct">
+                        <button
+                          onClick={() => handelEdit(item.title)}
+                          className="btn btn-warning btn-sm"
+                        >
+                          ویرایش
+                        </button>
+                      </Link>
                     </th>
-                    <th>
-                      <button className="btn btn-danger btn-sm">حذف</button>
-                    </th>
+                    <th></th>
                   </tr>
                 ))}
               </tbody>

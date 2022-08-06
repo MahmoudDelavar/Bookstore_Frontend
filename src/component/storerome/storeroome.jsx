@@ -32,7 +32,7 @@ class Storeroom extends Component {
 
             {/*------------------- edit product box ------------------- */}
             <div className="col-5 text-center edit">
-              <Link className="s-link" to="editproduct">
+              <Link className="s-link" to="productsTab">
                 <FcEditImage className="s-icon" />
                 <span className="s-text"> ویرایش محصول</span>
               </Link>

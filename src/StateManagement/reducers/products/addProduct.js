@@ -1,7 +1,7 @@
 import {
-  POST_DATA_REQUEST,
-  POST_DATA_SUCCESS,
-  POST_DATA_FAILED,
+  ADD_PRODUCT_REQUEST,
+  ADD_PRODUCT_SUCCESS,
+  ADD_PRODUCT_FAILED,
 } from "../../actions/actionTypes";
 
 const initionalState = {
@@ -10,17 +10,17 @@ const initionalState = {
   msg: "",
 };
 
-const addProductReducer = (state = initionalState, action) => {
+const addProduct = (state = initionalState, action) => {
   switch (action.type) {
-    case POST_DATA_REQUEST:
+    case ADD_PRODUCT_REQUEST:
       return { data: action.payload, err: "", msg: "" };
-    case POST_DATA_SUCCESS:
+    case ADD_PRODUCT_SUCCESS:
       return { data: [], err: "", msg: action.payload };
-    case POST_DATA_FAILED:
+    case ADD_PRODUCT_FAILED:
       return { data: [], err: action.err, msg: "" };
     default:
       return state;
   }
 };
 
-export default addProductReducer;
+export default addProduct;

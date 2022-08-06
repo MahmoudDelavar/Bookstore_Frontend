@@ -1,38 +1,35 @@
-import { Tabs, Tab } from "react-bootstrap";
-import ProductListByCategory from "./productListBycategory";
-import React, { Component } from "react";
+import CardComponent from "./../products/cardComponent";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import Editproducts from "../imputComponent/editProduct";
 
 //-------------------------------------------
 
-class LastProductsAdded extends Component {
-  state = {
-    books: [],
-  };
+const EditProduct = () => {
+  const book = useSelector((state) => state.oneProductState.product);
 
-  render() {
-    return (
-      <>
-        <h4 className="text-center">لیست آخرین محصولات بر اساس دسته بندی </h4>
-        <Tabs fill defaultActiveKey="psycology" id="homeNave" className="mb-3 ">
-          <Tab eventKey="psycology" title="روانشناسی">
-            <ProductListByCategory category={"روانشناسی"} />
-          </Tab>
-          <Tab eventKey="Sport" title="ورزشی">
-            <ProductListByCategory category={"ورزشی"} />
-          </Tab>
-          <Tab eventKey="Historical" title="تاریخی">
-            <ProductListByCategory category={"تاریخی"} />
-          </Tab>
-          <Tab eventKey="Romance" title="رمان">
-            <ProductListByCategory category={"رمان"} />
-          </Tab>
-          <Tab eventKey="Poetry" title="شعر">
-            <ProductListByCategory category={"شعر"} />
-          </Tab>
-        </Tabs>
-      </>
-    );
-  }
-}
+  //------------------------------
 
-export default LastProductsAdded;
+  return (
+    <>
+      <h2>edit product page</h2>
+      <div className="container">
+        <div className="row">
+          <div className="col-6">
+            <Editproducts />
+          </div>
+          <div className="col-6">
+            <CardComponent
+              title={book.title}
+              writer={book.writer}
+              explan={book.explan}
+              pric={book.pric}
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default EditProduct;

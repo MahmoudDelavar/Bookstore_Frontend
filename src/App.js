@@ -7,6 +7,7 @@ import Login from "./component/auth/login";
 import Register from "./component/auth/register";
 import Storeroom from "./component/storerome/storeroome";
 import EditProduct from "./component/storerome/editProduct";
+import ProductsTab from "./component/storerome/productsTab";
 import Footers from "./component/footer/footer";
 import Copyright from "./component/footer/copyright";
 import ForgetPass from "./component/auth/ForgetPass";
@@ -26,7 +27,11 @@ const App = () => {
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/storeroom" element={<Storeroom />} />
         <Route path="/forgetPass" element={<ForgetPass />} />
-        <Route path="/storeroom/editproduct" element={<EditProduct />} />
+        <Route path="/storeroom/productsTab" element={<ProductsTab />} />
+        <Route
+          path="/storeroom/productsTab/editProduct"
+          element={<EditProduct />}
+        />
         <Route path="/storeroom/addproduct" element={<AddProducts />} />
       </Routes>
       <Footers />
