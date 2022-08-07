@@ -14,6 +14,9 @@ import {
   EDIT_PRODUCT_REQUEST,
   EDIT_PRODUCT_SUCCESS,
   EDIT_PRODUCT_FAILED,
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAILED,
 } from "./actionTypes";
 
 //=====================Get All products actions =====================
@@ -42,6 +45,7 @@ export const getAllProducts = (dispatch) => {
       dispatch(productDataFaied(err.message));
     });
 };
+
 //=====================Get One products actions =====================
 const getOneproductRequest = (title) => ({
   type: GET_ONE_PRODUCT_REQUEST,
@@ -75,6 +79,7 @@ export const getOneProduct = (title) => {
       });
   };
 };
+
 //=====================Add product actions =====================
 const addProductRequest = (data) => ({
   type: ADD_PRODUCT_REQUEST,
@@ -135,6 +140,45 @@ export const editProduct = (dataToEdit) => {
       })
       .catch((err) => {
         dispatch(editProductFailed(err));
+        console.log("Send Data FAIED", err);
+      });
+  };
+};
+
+//=====================Delete One product actions =====================
+const deletOneProductRequest = (title) => ({
+  type: DELETE_PRODUCT_REQUEST,
+  title,
+});
+
+const deletOneProductSuccess = (message, products) => ({
+  type: DELETE_PRODUCT_SUCCESS,
+  message,
+  products,
+});
+
+const deletOneProductFailed = (err) => ({
+  type: DELETE_PRODUCT_FAILED,
+  err,
+});
+
+export const deletOneProduct = (title) => {
+  return function (dispatch) {
+    dispatch(deletOneProductRequest(title));
+    const apiUrl = `http://localhost:4000/api/storeroom/deleteOne?title=${title}`;
+
+    axios
+      .delete(apiUrl, title)
+      .then((res) => {
+        const message = res.data.message;
+        const products = res.data.data;
+
+        dispatch(deletOneProductSuccess(message, products));
+        console.log("msg from backend", message);
+        console.log("msg from backend", products);
+      })
+      .catch((err) => {
+        dispatch(deletOneProductFailed(err));
         console.log("Send Data FAIED", err);
       });
   };

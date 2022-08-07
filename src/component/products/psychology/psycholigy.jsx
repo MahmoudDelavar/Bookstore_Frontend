@@ -12,8 +12,6 @@ class Psychology extends Component {
         const books = res.data.data;
 
         this.setState({ books });
-        console.log("Axios_get:", books);
-        console.log("state is:", this.state.books);
       });
   }
   render() {

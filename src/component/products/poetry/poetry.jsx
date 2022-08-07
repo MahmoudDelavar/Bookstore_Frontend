@@ -11,8 +11,6 @@ class Poetry extends Component {
       .then((res) => {
         const books = res.data.data;
         this.setState({ books });
-        console.log("Axios_get:", books);
-        console.log("state is:", this.state.books);
       });
   }
   render() {

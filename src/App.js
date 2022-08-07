@@ -1,10 +1,7 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Switch } from "react-router-dom";
 import Footer from "./component/footer/footer";
 import Home from "./component/home/home";
 import Navbar from "./component/navbar/navbar";
-import Login from "./component/auth/login";
-
-import Register from "./component/auth/register";
 import Storeroom from "./component/storerome/storeroome";
 import EditProduct from "./component/storerome/editProduct";
 import ProductsTab from "./component/storerome/productsTab";
@@ -21,13 +18,14 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-        <Route exaxt path="/home" element={<Home />} />
-        <Route exaxt path="/" element={<Home />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<LoginUser />} />
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/storeroom" element={<Storeroom />} />
         <Route path="/forgetPass" element={<ForgetPass />} />
         <Route path="/storeroom/productsTab" element={<ProductsTab />} />
+
         <Route
           path="/storeroom/productsTab/editProduct"
           element={<EditProduct />}

@@ -1,12 +1,15 @@
 import { Tabs, Tab } from "react-bootstrap";
 import ProductListByCategory from "./productListBycategory";
-import React, { Component } from "react";
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../StateManagement/actions/productActions";
 
 //-------------------------------------------
 
-class LastProductsAdded extends Component {
-  render() {
-    return (
+const LastProductsAdded = () => {
+  return (
+    <>
       <>
         <h4 className="text-center">لیست محصولات بر اساس دسته بندی </h4>
         <Tabs defaultActiveKey="psycology" id="homeNave" className="mb-3 ">
@@ -27,8 +30,8 @@ class LastProductsAdded extends Component {
           </Tab>
         </Tabs>
       </>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default LastProductsAdded;

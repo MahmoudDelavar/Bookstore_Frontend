@@ -1,34 +1,37 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  editProduct,
   getAllProducts,
   getOneProduct,
+  deletOneProduct,
 } from "../../StateManagement/actions/productActions";
-import CardComponent from "../products/cardComponent";
 
-//================================sasda========
+//========================================
 
 const ProductListByCategory = ({ category }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const books = useSelector((state) => state.allproductState.data);
-  const book = useSelector((state) => state.oneProductState.product);
   const bookFiltered = books.filter((books) => books.category == category);
 
   useEffect(() => {
     getAllProducts(dispatch);
   }, []);
-  //--------------- handel Edit ---------------
-  const handelEdit = (title) => {
+
+  //--------------- Handle Edit ---------------
+  const handleEdit = (title) => {
     dispatch(getOneProduct(title));
   };
-  //--------------- handel Remove ---------------
-  const removeProduct = (title) => {
-    console.log("remove", title);
+
+  //--------------- Handle Remove ---------------
+  const handleDelete = (title) => {
+    dispatch(deletOneProduct(title));
+    alert("محصول حدف شد");
+    navigate("/storeroom");
   };
+
   //---------------------------------------------
-  const [bookinfo, setBookinfo] = useState([]);
   return (
     <>
       <div className="container">
@@ -58,14 +61,21 @@ const ProductListByCategory = ({ category }) => {
                     <th>
                       <Link to="editProduct">
                         <button
-                          onClick={() => handelEdit(item.title)}
+                          onClick={() => handleEdit(item.title)}
                           className="btn btn-warning btn-sm"
                         >
                           ویرایش
                         </button>
                       </Link>
                     </th>
-                    <th></th>
+                    <th>
+                      <button
+                        onClick={() => handleDelete(item.title)}
+                        className="btn btn-danger btn-sm"
+                      >
+                        حذف
+                      </button>
+                    </th>
                   </tr>
                 ))}
               </tbody>
