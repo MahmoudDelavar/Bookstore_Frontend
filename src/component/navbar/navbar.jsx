@@ -2,8 +2,7 @@ import { Container, Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import "react-bootstrap/dist/react-bootstrap.js";
 import { Link } from "react-router-dom";
-import { MdHome, MdLogin } from "react-icons/md";
-import { HiOutlineBookOpen } from "react-icons/hi";
+import { MdHome, MdLogin, MdLogout } from "react-icons/md";
 import { TiEdit, TiClipboard } from "react-icons/ti";
 import { Book } from "react-bootstrap-icons";
 import "./navStyle.css";
@@ -25,6 +24,10 @@ const TopNavbar = () => {
               </Link>
               <Link className="nav-link " to="/register">
                 <TiEdit className="icon" /> ثبت نام
+              </Link>
+              <Link className="nav-link " to="/logout">
+                <MdLogout className="icon" />
+                خروج
               </Link>
               <Link className="nav-link " to="/login">
                 <MdLogin className="icon" /> ورود

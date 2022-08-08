@@ -9,8 +9,11 @@ import Footers from "./component/footer/footer";
 import Copyright from "./component/footer/copyright";
 import ForgetPass from "./component/auth/ForgetPass";
 import LoginUser from "./component/auth/loginUser";
+import LogOutUser from "./component/auth/logout";
 import RegisterUser from "./component/auth/registerUser";
 import AddProducts from "./component/imputComponent/addProducts";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 //============================
 
 const App = () => {
@@ -21,6 +24,7 @@ const App = () => {
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<LoginUser />} />
+        <Route path="/logout" element={<LogOutUser />} />
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/storeroom" element={<Storeroom />} />
         <Route path="/forgetPass" element={<ForgetPass />} />
