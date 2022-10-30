@@ -5,10 +5,10 @@
 }
 
 .s-icon {
-  font-size: 100px;
+  font-size: 5rem;
 }
 .s-text {
-  font-size: 20px;
+  font-size: 1rem;
   display: block;
 }
 .s-link {
@@ -18,13 +18,13 @@
 }
 .s-link:hover {
   background-color: rgba(100, 132, 235, 0.534);
-  border-radius: 50%;
+  border-radius: 20%;
   color: rgb(8, 55, 95);
   transition: 0.7s;
 }
 .s-link:not(:hover) {
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.308);
-  border-radius: 50%;
+  border-radius: 10%;
   transition: 1s;
 }

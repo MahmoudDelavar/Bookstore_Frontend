@@ -74,6 +74,7 @@ class EditProducts extends Component {
                   this.state.books.map((u, index) => (
                     <CardComponent
                       key={index}
+                      picPath={u.picPath}
                       title={u.title}
                       writer={u.writer}
                       explan={u.explan}

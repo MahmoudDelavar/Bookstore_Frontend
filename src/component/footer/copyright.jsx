@@ -10,7 +10,7 @@ const Copyright = () => {
             style={{ backgroundCcolor: " rgba(0, 0, 0)" }}
           >
             © 2021 Copyright :{" "}
-            <Link className="text-reset fw-bold" to="/https://masalan.com/">
+            <Link className="text-reset fw-bold" to="#">
               Mahmoud_Delavar.P
             </Link>
           </div>

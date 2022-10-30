@@ -35,7 +35,7 @@ class EditBookInfo extends Component {
     console.log("msg from submit:", this.state.product);
 
     axios
-      .put(`http://localhost:4000/api/storeroom?title=${this.bookName}`, {
+      .put(`http://yeechizi.ir/api/storeroom?title=${this.bookName}`, {
         title: this.state.product.title,
         writer: this.state.product.writer,
         count: this.state.product.count,

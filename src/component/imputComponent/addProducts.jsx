@@ -9,32 +9,52 @@ import { AiOutlineFieldNumber } from "react-icons/ai";
 import { ImImage, ImList2, ImFileText2 } from "react-icons/im";
 import { useState } from "react";
 import { useEffect } from "react";
+import { FcPlus, FcPicture } from "react-icons/fc";
+import axios from "axios";
 
 //========================================
 const Addproduct = ({ addProduct, message }) => {
+  const [picPath, setPicPath] = useState("");
+
   useEffect(() => {
     if (!err) {
       setMsg(message);
     }
   });
+  //-------------------------- send data to backend ---------------------------------
 
+  //____Send products Picture To Server___
+  const handleChange = async (e) => {
+    setPicPath("");
+    const form = new FormData();
+    const config = {
+      header: { "content-type": "multipart-data" },
+    };
+    form.append("file", e.target.files[0]);
+    axios
+      .post("http://yeechizi.ir/api/storeroom/uploadPic", form, config)
+      .then((res) => {
+        setPicPath(res.data.data.filePath);
+      })
+      .catch((err) => console.log(err));
+  };
   // ------ Handel submit form -------------------
   const handelSubmit = async (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
-    const img = form.get("img");
     const title = form.get("title");
     const writer = form.get("writer");
     const count = form.get("count");
     const pric = form.get("pric");
     const explan = form.get("explan");
     const category = form.get("category");
-    const bookInfo = { title, writer, count, pric, explan, category, img };
+    const bookInfo = { title, writer, count, pric, explan, category };
     const isValid = await validate(bookInfo);
     if (isValid) {
-      addProduct({ title, writer, count, pric, explan, category, img });
+      addProduct({ title, writer, count, pric, explan, category, picPath });
       event.target.reset();
       setErr("");
+      setPicPath("");
     } else {
       setMsg("");
     }
@@ -95,7 +115,7 @@ const Addproduct = ({ addProduct, message }) => {
                 <div className="alert  mb-3">
                   <ul
                     className="text-center  fw-bold"
-                    style={{ listStyle: "none" }}
+                    style={{ listStyle: "none", color: "green" }}
                   >
                     {msg}
                   </ul>
@@ -200,21 +220,34 @@ const Addproduct = ({ addProduct, message }) => {
                   </select>
                 </div>
 
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <label htmlFor="img-label">تصویر</label>
-                  </span>
-                  <span className="input-group-text">
-                    <ImImage className="login-icon" />
-                  </span>
-                  <input
-                    type="file"
-                    className="form-control"
-                    name="img"
-                    id="img-label"
-                  />
+                <div className="row align-items-center text-center">
+                  <div className="col-6 ">
+                    <label htmlFor="avatar">
+                      <FcPlus size={50} />
+                      <p> تصویر محصل</p>
+                    </label>
+                    <input
+                      onChange={(e) => handleChange(e)}
+                      id="avatar"
+                      type="file"
+                      className="pic-input"
+                    />
+                  </div>
+                  <div className="col-6">
+                    {picPath !== "" && (
+                      <img
+                        className="pic"
+                        src={`http://yeechizi.ir:5000/${picPath}`}
+                      />
+                    )}
+                    {picPath == "" && (
+                      <div>
+                        <FcPicture size={50} /> <p>پیش نمایش</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="d-grid mb-3 text-center">
+                <div className="d-grid mt-2 mb-3 text-center">
                   <button type="submit" className="btn btn-info btn-lg">
                     ثبت محصول
                   </button>

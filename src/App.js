@@ -1,4 +1,4 @@
-import { Route, Routes, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./component/footer/footer";
 import Home from "./component/home/home";
 import Navbar from "./component/navbar/navbar";
@@ -13,16 +13,25 @@ import LogOutUser from "./component/auth/logout";
 import RegisterUser from "./component/auth/registerUser";
 import AddProducts from "./component/imputComponent/addProducts";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { findeUserByToken } from "./StateManagement/actions/userActions";
+import axios from "axios";
+import Protect from "./component/auth/protect";
 //============================
 
 const App = () => {
+  //---------------------
+  const dispatch = useDispatch();
+  const loadedUser = useSelector((state) => state.findeUserByTokenState.user);
+  //---------------------
+  const [user, setUser] = useState(null);
+  const [findeuser, setFindeuser] = useState(null);
   return (
     <>
       <Navbar />
       <Routes>
-        <Route exact path="/home" element={<Home />} />
-        <Route exact path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginUser />} />
         <Route path="/logout" element={<LogOutUser />} />
         <Route path="/register" element={<RegisterUser />} />

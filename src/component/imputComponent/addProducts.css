@@ -3,3 +3,20 @@
   border-radius: 25px;
   margin-bottom: 30px;
 }
+.pic-input {
+  opacity: 0;
+  width: 0.1px;
+  width: 0.1px;
+  z-index: -1;
+}
+.pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 5px;
+}
+.pic-input {
+  opacity: 0;
+  z-index: -1;
+  width: 0.01px;
+  height: 0.01px;
+}

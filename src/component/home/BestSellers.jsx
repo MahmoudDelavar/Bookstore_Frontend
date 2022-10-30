@@ -14,7 +14,7 @@ const Bestsellers = () => {
   };
   return (
     <>
-      <div className="container-floid ">
+      <div className="container-fluid ">
         <div className="row">
           <div className=" col-12 text-center mt-3 ">
             <h4 className="text-muted"> پر فروش ها</h4>{" "}

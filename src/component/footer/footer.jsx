@@ -62,15 +62,14 @@ const Footer = () => {
                 <h4 class=" text-left "> دربارما</h4>
 
                 <p className="text-justify">
-                  <Geo /> مشهد - بلوار ناموجود - خیابان نمیدونم - پلاک 5 واحد
-                  212
+                  <Geo /> مشهد - بلوار اونجا - خیابان اینجا - پلاک 5 واحد 212
                 </p>
                 <p className="text-justify">
                   <Telephone /> تلفن : 051300000000
                 </p>
                 <p className="text-justify">
                   <Mailbox />
-                  ایمیل: info@malan.com
+                  ایمیل: info@masalan.com
                 </p>
               </div>
             </footer>

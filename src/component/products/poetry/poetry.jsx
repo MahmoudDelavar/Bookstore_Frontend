@@ -6,12 +6,10 @@ class Poetry extends Component {
     books: [],
   };
   componentDidMount() {
-    axios
-      .get("http://localhost:4000/api/storeroom?category=شعر")
-      .then((res) => {
-        const books = res.data.data;
-        this.setState({ books });
-      });
+    axios.get("http://yeechizi.ir/api/storeroom?category=شعر").then((res) => {
+      const books = res.data.data;
+      this.setState({ books });
+    });
   }
   render() {
     return (
@@ -28,6 +26,7 @@ class Poetry extends Component {
           {this.state.books.map((u, index) => (
             <CardComponent
               key={index}
+              picPath={u.picPath}
               title={u.title}
               writer={u.writer}
               explan={u.explan}

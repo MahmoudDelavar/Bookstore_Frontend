@@ -9,6 +9,7 @@ import { AiOutlineFieldNumber } from "react-icons/ai";
 import { ImImage, ImList2, ImFileText2 } from "react-icons/im";
 import { useState } from "react";
 import { useEffect } from "react";
+import axios from "axios";
 
 //========================================
 const Editproduct = () => {
@@ -23,6 +24,12 @@ const Editproduct = () => {
   const infoToEdit = useSelector((state) => state.oneProductState.product);
   const message = useSelector((state) => state.editProducState.message);
 
+  //-------------------------- states -----------------------------------------------
+  const [msg, setMsg] = useState([]);
+  const [err, setErr] = useState([]);
+  const [picPath, setPicPath] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   // ------ Handel submit form -------------------
   const handelSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +42,9 @@ const Editproduct = () => {
     const pric = form.get("pric");
     const explan = form.get("explan");
     const category = form.get("category");
+    if (picPath == "") {
+      picPath = infoToEdit.picPath;
+    }
     const bookInfo = {
       title,
       writer,
@@ -44,8 +54,7 @@ const Editproduct = () => {
       category,
       img,
     };
-    console.log("old tiot", oldTitle);
-    console.log("new title", title);
+
     const isValid = await validate(bookInfo);
     if (isValid) {
       dispatch(
@@ -58,10 +67,12 @@ const Editproduct = () => {
           category,
           img,
           oldTitle,
+          picPath,
         })
       );
       event.target.reset();
       setErr("");
+      setMsg("ویرایش انجام شد");
     } else {
       setMsg("");
     }
@@ -94,165 +105,201 @@ const Editproduct = () => {
       setErr(error.errors);
     }
   };
-  //---------- End validation input-----------------
-  const [msg, setMsg] = useState([]);
-  const [err, setErr] = useState([]);
+
+  //----------Send Users Avatar To Server-----------------
+  const handleChange = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
+    const form = new FormData();
+    const config = {
+      header: { "content-type": "multipart-data" },
+    };
+    form.append("file", e.target.files[0]);
+    axios
+      .post("http://yeechizi.ir/api/storeroom/uploadPic", form, config)
+      .then((res) => {
+        setPicPath(res.data.data.filePath);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
-      <div className="container">
-        {/*------------------- error and success message box -------------------*/}
-        <section>
-          <div className="row justify-content-center">
-            {err.length !== 0 && (
-              <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
-                <div className="alert alert-danger mb-3">
-                  <ul
-                    className="text-center  fw-bold"
-                    style={{ listStyle: "none" }}
-                  >
-                    {err.map((e, index) => (
-                      <li key={index}>{e}</li>
-                    ))}
-                  </ul>
+      <div className="container  ">
+        <div className="row  justify-content-around">
+          {/*------------------- error and success message box -------------------*/}
+          <section>
+            <div className="row justify-content-center">
+              {err.length !== 0 && (
+                <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
+                  <div className="alert alert-danger mb-3">
+                    <ul
+                      className="text-center  fw-bold"
+                      style={{ listStyle: "none" }}
+                    >
+                      {err.map((e, index) => (
+                        <li key={index}>{e}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            )}
-            {msg && (
-              <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
-                <div className="alert  mb-3">
-                  <ul
-                    className="text-center  fw-bold"
-                    style={{ listStyle: "none" }}
-                  >
-                    {msg}
-                  </ul>
+              )}
+              {msg && (
+                <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8  ">
+                  <div className="alert   mb-3">
+                    <ul
+                      className="text-center bg-info fw-bold"
+                      style={{ listStyle: "none", color: "green" }}
+                    >
+                      {msg}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        </section>
-        {/*---------------------------- fotm box---------------------------- */}
-        <section>
-          <div className="row justify-content-center box">
-            <div className="col-sm-12 col-md-9 col-lg-6  ">
-              <h6 className="text-center">ویرایش اطلاعات</h6>
-              <form
-                method="post"
-                onSubmit={(event) => handelSubmit(event)}
-                encType="multipart/form-data"
-              >
-                <label htmlFor="title-label">عنوان کتاب</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <Book className="login-icon" />
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control "
-                    name="title"
-                    id="title-label"
-                    defaultValue={infoToEdit.title}
-                  />
-                </div>
-                <label htmlFor="writer-label"> نویسنده</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <IoMdCreate className="login-icon" />
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control "
-                    name="writer"
-                    id="writer-label"
-                    defaultValue={infoToEdit.writer}
-                  />
-                </div>
-                <label htmlFor="explan-label"> توضیحات</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <ImFileText2 className="login-icon" />
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control "
-                    name="explan"
-                    id="explan-label"
-                    defaultValue={infoToEdit.explan}
-                  />
-                </div>
-                <label htmlFor="count-label"> تعداد</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <AiOutlineFieldNumber className="login-icon" />
-                  </span>
-                  <input
-                    type="number"
-                    className="form-control "
-                    name="count"
-                    id="count-label"
-                    defaultValue={infoToEdit.count}
-                  />
-                </div>
-                <label htmlFor="pric-label"> قیمت</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <MdEuroSymbol className="login-icon" />
-                  </span>
-                  <input
-                    type="number"
-                    className="form-control "
-                    name="pric"
-                    id="pric-label"
-                    defaultValue={infoToEdit.pric}
-                  />
-                </div>
-
-                <div className="input-group mb-3 ">
-                  <span className="input-group-text">
-                    <label htmlFor="category-label ">دسته بندی</label>
-                  </span>
-                  <span className="input-group-text">
-                    <ImList2 className="login-icon" />
-                  </span>
-                  <select
-                    className="custom-select input-group-text "
-                    name="category"
-                    id="category-label"
-                  >
-                    <option selected value="">
-                      انتخاب کنید
-                    </option>
-                    <option value="روانشناسی">روانشناسی</option>
-                    <option value="رمان">رمان</option>
-                    <option value="ورزشی">ورزشی</option>
-                    <option value="تاریخی">تاریخی</option>
-                    <option value="شعر">شعر</option>
-                  </select>
-                </div>
-
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <label htmlFor="img-label">تصویر</label>
-                  </span>
-                  <span className="input-group-text">
-                    <ImImage className="login-icon" />
-                  </span>
-                  <input
-                    type="file"
-                    className="form-control"
-                    name="img"
-                    id="img-label"
-                  />
-                </div>
-                <div className="d-grid mb-3 text-center">
-                  <button type="submit" className="btn btn-info btn-lg">
-                    ثبت محصول
-                  </button>
-                </div>
-              </form>
+              )}
             </div>
-          </div>
-        </section>
+          </section>
+          {/*---------------------------- fotm box---------------------------- */}
+          <section>
+            <div className="row justify-content-center ">
+              <div className="col-sm-12 col-md-9 col-lg-6  ">
+                <form
+                  method="post"
+                  onSubmit={(event) => handelSubmit(event)}
+                  encType="multipart/form-data"
+                >
+                  <label htmlFor="title-label">عنوان کتاب</label>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text">
+                      <Book className="login-icon" />
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control "
+                      name="title"
+                      id="title-label"
+                      defaultValue={infoToEdit.title}
+                    />
+                  </div>
+                  <label htmlFor="writer-label"> نویسنده</label>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text">
+                      <IoMdCreate className="login-icon" />
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control "
+                      name="writer"
+                      id="writer-label"
+                      defaultValue={infoToEdit.writer}
+                    />
+                  </div>
+                  <label htmlFor="explan-label"> توضیحات</label>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text">
+                      <ImFileText2 className="login-icon" />
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control "
+                      name="explan"
+                      id="explan-label"
+                      defaultValue={infoToEdit.explan}
+                    />
+                  </div>
+                  <label htmlFor="count-label"> تعداد</label>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text">
+                      <AiOutlineFieldNumber className="login-icon" />
+                    </span>
+                    <input
+                      type="number"
+                      className="form-control "
+                      name="count"
+                      id="count-label"
+                      defaultValue={infoToEdit.count}
+                    />
+                  </div>
+                  <label htmlFor="pric-label"> قیمت</label>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text">
+                      <MdEuroSymbol className="login-icon" />
+                    </span>
+                    <input
+                      type="number"
+                      className="form-control "
+                      name="pric"
+                      id="pric-label"
+                      defaultValue={infoToEdit.pric}
+                    />
+                  </div>
+
+                  <div className="input-group mb-3 ">
+                    <span className="input-group-text">
+                      <label htmlFor="category-label ">دسته بندی</label>
+
+                      <select
+                        className="custom-select input-group-text "
+                        name="category"
+                        id="category-label"
+                      >
+                        <option selected value="">
+                          انتخاب کنید
+                        </option>
+                        <option value="روانشناسی">روانشناسی</option>
+                        <option value="رمان">رمان</option>
+                        <option value="ورزشی">ورزشی</option>
+                        <option value="تاریخی">تاریخی</option>
+                        <option value="شعر">شعر</option>
+                      </select>
+                    </span>
+                  </div>
+
+                  <div className="row align-items-center text-center">
+                    <div className="col-6 ">
+                      <label htmlFor="pic">
+                        <ImImage size={50} />
+                        <p> تصویر محصول</p>
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        id="pic"
+                        type="file"
+                        className="pic-input"
+                      />
+                    </div>
+                    <div className="col-6">
+                      {picPath !== "" && (
+                        <img
+                          className="pic"
+                          src={`http://yeechizi.ir:5000/${picPath}`}
+                        />
+                      )}
+                      {picPath == "" &&
+                        (isLoading ? (
+                          <div
+                            className="spinner-border text-danger"
+                            role="status"
+                          >
+                            <span className="visually-hidden">Loading...</span>
+                          </div>
+                        ) : (
+                          <div>
+                            <ImImage size={50} /> <p>پیش نمایش</p>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+
+                  <div className="d-grid mb-3 text-center">
+                    <button type="submit" className="btn btn-info ">
+                      ویرایش و ذخیره{" "}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </>
   );

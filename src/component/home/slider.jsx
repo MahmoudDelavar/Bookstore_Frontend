@@ -24,40 +24,46 @@ const HomeSlider = () => {
           </div>
           <div className="col-12">
             <Slider {...settings}>
-              <div className="m-2">
+              <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/1.jpg")}
                   alt=""
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>
-              <div className="m-2">
+              <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/2.jpg")}
                   alt=""
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>{" "}
-              <div className="m-2">
+              <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/3.jpg")}
                   alt=""
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>{" "}
-              <div className="m-2">
+              <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/4.jpg")}
                   alt=""
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>{" "}
-              <div className="m-2">
+              <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/5.jpg")}
                   alt=""
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>
-              <div className="m-2">
+              <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/6.jpg")}
                   alt=""
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>
             </Slider>

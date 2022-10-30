@@ -20,24 +20,32 @@ const RegisterUser = ({ registerUser, message, err }) => {
   const handelSubmit = async (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
-    const name = form.get("userName");
+    const userName = form.get("userName");
     const password = form.get("password");
+    const re_password = form.get("re-password");
     const email = form.get("email");
-    const userInfo = { name, email, password };
+    const userInfo = { userName, email, password };
     const isValid = await validate(userInfo);
-    if (isValid) {
-      registerUser({ name, email, password });
-      e.target.reset();
-      setErrs("");
+    if (re_password === password) {
+      if (isValid) {
+        registerUser({ userName, email, password });
+        e.target.reset();
+        setErrs("");
+        setTimeout(() => {
+          window.location = "/";
+        }, 2000);
+      } else {
+        setMsg("");
+        setDbErrs("");
+      }
     } else {
-      setMsg("");
-      setDbErrs("");
+      setErrs(["تکرار پسورد مطابقت ندارد"]);
     }
   };
 
   //----------validation-------------
   const schema = yup.object().shape({
-    name: yup.string().required(" نام کاربری را وارد کنید"),
+    userName: yup.string().required(" نام کاربری را وارد کنید"),
     email: yup
       .string()
       .email("فرمت ایمیل صحیح نیست ")

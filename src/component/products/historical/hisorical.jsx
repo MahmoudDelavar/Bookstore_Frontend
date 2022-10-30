@@ -7,10 +7,9 @@ class Historical extends Component {
   };
   componentDidMount() {
     axios
-      .get("http://localhost:4000/api/storeroom?category=تاریخی")
+      .get("http://yeechizi.ir/api/storeroom?category=تاریخی")
       .then((res) => {
         const books = res.data.data;
-
         this.setState({ books });
       });
   }
@@ -29,6 +28,7 @@ class Historical extends Component {
           {this.state.books.map((u, index) => (
             <CardComponent
               key={index}
+              picPath={u.picPath}
               title={u.title}
               writer={u.writer}
               explan={u.explan}

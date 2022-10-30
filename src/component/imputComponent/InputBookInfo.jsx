@@ -33,7 +33,7 @@ class InputBookInfo extends Component {
     console.log("msg from submit:", this.state.product);
 
     axios
-      .post("http://localhost:4000/api/storeroom", {
+      .post("http://yeechizi.ir/api/storeroom", {
         title: this.state.product.title,
         writer: this.state.product.writer,
         count: this.state.product.count,
@@ -195,8 +195,7 @@ class InputBookInfo extends Component {
                   onClick={this.handelSubmit}
                   className="btn btn-success btn-sm mb-2"
                 >
-                  {" "}
-                  ثبت محصول
+                  ویرایش و ذخیره
                 </button>
               </div>
             </div>

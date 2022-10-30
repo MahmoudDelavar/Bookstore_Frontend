@@ -29,6 +29,7 @@ const ProductListByCategory = ({ category }) => {
     dispatch(deletOneProduct(title));
     alert("محصول حدف شد");
     navigate("/storeroom");
+    // window.location = "./"; refresh beowser
   };
 
   //---------------------------------------------

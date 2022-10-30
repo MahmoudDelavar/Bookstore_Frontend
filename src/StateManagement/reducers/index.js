@@ -6,6 +6,8 @@ import getOneProduct from "./products/getOneProduct";
 import deleteOneProduct from "./products/deleteOneProduct";
 import loginUser from "./users/loginUser";
 import registerUser from "./users/regiterUser";
+import findeUserByToken from "./users/findUserBytoken";
+
 export default combineReducers({
   allproductState: getAllProducts,
   addProductState: addProduct,
@@ -14,4 +16,5 @@ export default combineReducers({
   oneProductState: getOneProduct,
   loginUserState: loginUser,
   registerUserState: registerUser,
+  findeUserByTokenState: findeUserByToken,
 });

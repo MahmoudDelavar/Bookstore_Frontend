@@ -7,7 +7,7 @@ class Sport extends Component {
   };
   componentDidMount() {
     axios
-      .get("http://localhost:4000/api/storeroom?category=ورزشی")
+      .get("http://lyeechizi.ir/api/storeroom?category=ورزشی")
       .then((res) => {
         const books = res.data.data;
 
@@ -29,6 +29,7 @@ class Sport extends Component {
           {this.state.books.map((u, index) => (
             <CardComponent
               key={index}
+              picPath={u.picPath}
               title={u.title}
               writer={u.writer}
               explan={u.explan}

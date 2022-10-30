@@ -33,7 +33,10 @@ const productDataFaied = (err) => ({
 });
 
 export const getAllProducts = (dispatch) => {
-  const apiUrl = "http://localhost:4000/api/storeroom/all";
+  const token = localStorage.getItem("token");
+  axios.defaults.headers.common["token"] = token;
+  axios.defaults.headers.post["Content-Type"] = "application/json";
+  const apiUrl = "http://yeechizi.ir/api/storeroom/all";
   dispatch(productRequest);
   axios
     .get(apiUrl)
@@ -63,7 +66,7 @@ const getOneproductFaied = (err) => ({
 export const getOneProduct = (title) => {
   return function (dispatch) {
     dispatch(getOneproductRequest(title));
-    const apiUrl = `http://localhost:4000/api/storeroom/getOne?title=${title}`;
+    const apiUrl = `http://yeechizi.ir/api/storeroom/getOne?title=${title}`;
     axios
       .get(apiUrl)
       .then((res) => {
@@ -96,14 +99,19 @@ const addProductFailed = (err) => ({
 
 export const addProduct = (data) => {
   return function (dispatch) {
+    const token = localStorage.getItem("token");
+
     dispatch(addProductRequest(data));
-    const apiUrl = "http://localhost:4000/api/storeroom";
+    const apiUrl = "http://yeechizi.ir/api/storeroom";
     axios
       .post(apiUrl, data)
       .then((res) => {
         const msg = res.data.message;
         dispatch(addProductSuccess(msg));
-        console.log("msg from backend", msg);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       })
       .catch((err) => {
         dispatch(addProductFailed(err));
@@ -130,13 +138,16 @@ const editProductFailed = (err) => ({
 export const editProduct = (dataToEdit) => {
   return function (dispatch) {
     dispatch(editProductRequest(dataToEdit));
-    const apiUrl = "http://localhost:4000/api/storeroom/edit";
+    const apiUrl = "http://yeechizi.ir/api/storeroom/edit";
     axios
       .put(apiUrl, dataToEdit)
       .then((res) => {
         const editedData = res.data.data;
         dispatch(editProductSuccess(editedData));
         console.log("msg from backend", editedData);
+        setTimeout(() => {
+          window.location = "/storeroom/productsTab";
+        }, 2000);
       })
       .catch((err) => {
         dispatch(editProductFailed(err));
@@ -165,7 +176,7 @@ const deletOneProductFailed = (err) => ({
 export const deletOneProduct = (title) => {
   return function (dispatch) {
     dispatch(deletOneProductRequest(title));
-    const apiUrl = `http://localhost:4000/api/storeroom/deleteOne?title=${title}`;
+    const apiUrl = `http://yeechizi.ir/api/storeroom/deleteOne?title=${title}`;
 
     axios
       .delete(apiUrl, title)
