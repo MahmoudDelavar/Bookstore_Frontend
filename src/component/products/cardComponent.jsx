@@ -31,7 +31,7 @@ const CardComponent = ({
               <small class="card-text text-justify">{explan}</small>
             </div>
             <div class="card-footer">
-              <small class="text-muted "> تومان {pric} قیمت </small>
+              <small class="text-muted "> قیمت: {pric} تومان</small>
             </div>
           </div>
         </Link>

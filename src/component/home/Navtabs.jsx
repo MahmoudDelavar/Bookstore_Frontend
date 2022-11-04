@@ -7,35 +7,43 @@ import Poetry from "../products/poetry/poetry";
 const NavTab = () => {
   return (
     <>
-      <div className="container-fluid">
-        <div
-          className="row justify-content-center"
-          style={{ overflowY: "hidden" }}
-        >
-          <div className="col-12">
-            <Tabs
-              fill
-              defaultActiveKey="Psychology"
-              id="homeNave"
-              className="mb-3 "
+      <div className="row ">
+        <div className="col-11 silder-box">
+          <Tabs
+            fill
+            defaultActiveKey="Psychology"
+            id="homeNave"
+            className="mb-3 "
+            justify="true"
+          >
+            <Tab
+              eventKey="Psychology"
+              title="روانشناسی"
+              style={{ overflowY: "hidden" }}
             >
-              <Tab eventKey="Psychology" title="روانشناسی">
-                <Psychology />
-              </Tab>
-              <Tab eventKey="Sport" title="ورزشی">
-                <Sport />
-              </Tab>
-              <Tab eventKey="Historical" title="تاریخی">
-                <Historical />
-              </Tab>
-              <Tab eventKey="Romance" title="رمان">
-                <Romance />
-              </Tab>
-              <Tab eventKey="Poetry" title="شعر">
-                <Poetry />
-              </Tab>
-            </Tabs>
-          </div>
+              <Psychology />
+            </Tab>
+            <Tab eventKey="Sport" title="ورزشی" style={{ overflowY: "hidden" }}>
+              <Sport />
+            </Tab>
+            <Tab
+              eventKey="Historical"
+              title="تاریخی"
+              style={{ overflowY: "hidden" }}
+            >
+              <Historical />
+            </Tab>
+            <Tab
+              eventKey="Romance"
+              title="رمان"
+              style={{ overflowY: "hidden" }}
+            >
+              <Romance />
+            </Tab>
+            <Tab eventKey="Poetry" title="شعر" style={{ overflowY: "hidden" }}>
+              <Poetry className="text center" />
+            </Tab>
+          </Tabs>
         </div>
       </div>
     </>

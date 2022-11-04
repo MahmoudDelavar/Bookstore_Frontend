@@ -1,19 +1,20 @@
 import React from "react";
 import Slider from "react-slick";
+import "./styles.css";
 //============================
 
 const HomeSlider = () => {
   var settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
     // rtl: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
   };
   return (
     <>
@@ -22,48 +23,48 @@ const HomeSlider = () => {
           <div className=" col-12 text-center mt-3 ">
             <h4 className="text-muted"> تازه های کتاب</h4>{" "}
           </div>
-          <div className="col-12">
+          <div className="col-xl-8 col-lg-9 col-md-11  silder-box  ">
             <Slider {...settings}>
               <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/1.jpg")}
                   alt=""
-                  style={{ width: "100%", height: "100%" }}
+                  className="slider-img"
                 />
               </div>
               <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/2.jpg")}
                   alt=""
-                  style={{ width: "100%", height: "100%" }}
+                  className="slider-img"
                 />
               </div>{" "}
               <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/3.jpg")}
                   alt=""
-                  style={{ width: "100%", height: "100%" }}
+                  className="slider-img"
                 />
               </div>{" "}
               <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/4.jpg")}
                   alt=""
-                  style={{ width: "100%", height: "100%" }}
+                  className="slider-img"
                 />
               </div>{" "}
               <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/5.jpg")}
                   alt=""
-                  style={{ width: "100%", height: "100%" }}
+                  className="slider-img"
                 />
               </div>
               <div className="ml-2">
                 <img
                   src={require("./../../media/Books/topSlider/6.jpg")}
                   alt=""
-                  style={{ width: "100%", height: "100%" }}
+                  className="slider-img"
                 />
               </div>
             </Slider>

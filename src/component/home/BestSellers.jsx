@@ -1,16 +1,15 @@
 import Slider from "react-slick";
 import CaruselComponent from "../products/carosetComponent";
+import "./styles.css";
 
 const Bestsellers = () => {
   var settings = {
-    dots: false,
+    dots: true,
     infinite: true,
+    speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 2,
-
-    cssEase: "linear",
-    // rtl: true,
-    pauseOnHover: true,
+    slidesToScroll: 4,
+    initialSlide: 0,
   };
   return (
     <>
@@ -19,7 +18,7 @@ const Bestsellers = () => {
           <div className=" col-12 text-center mt-3 ">
             <h4 className="text-muted"> پر فروش ها</h4>{" "}
           </div>
-          <div className="col-12">
+          <div className="col-xl-8 col-lg-9 col-md-11 silder-box">
             <Slider {...settings}>
               <div className="m-2">
                 <CaruselComponent

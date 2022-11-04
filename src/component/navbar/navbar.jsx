@@ -31,11 +31,14 @@ const TopNavbar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+              <Link className="nav-link active " to="/home">
+                <MdHome className="icon" /> خانه
+              </Link>{" "}
+              <Link className="nav-link " to="/storeroom">
+                <TiClipboard className="icon" /> سامانه انبار
+              </Link>
               {!user ? (
                 <>
-                  <Link className="nav-link active " to="/home">
-                    <MdHome className="icon" /> خانه
-                  </Link>
                   <Link className="nav-link " to="/register">
                     <TiEdit className="icon" /> ثبت نام
                   </Link>
@@ -46,12 +49,6 @@ const TopNavbar = () => {
                 </>
               ) : (
                 <>
-                  <Link className="nav-link active " to="/home">
-                    <MdHome className="icon" /> خانه
-                  </Link>
-                  <Link className="nav-link " to="/storeroom">
-                    <TiClipboard className="icon" /> سامانه انبار
-                  </Link>
                   <Link className="nav-link " to="/logout">
                     <MdLogout className="icon" />
                     خروج

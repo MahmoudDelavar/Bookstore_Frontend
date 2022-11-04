@@ -59,15 +59,15 @@ const Footer = () => {
               </div>
 
               <div className=" AboutUs col-xs-12 col-sm-6 col-md-6 col-lg-3 ">
-                <h4 class=" text-left "> دربارما</h4>
+                <h4 class="  "> دربارما</h4>
 
-                <p className="text-justify">
+                <p className="text-left">
                   <Geo /> مشهد - بلوار اونجا - خیابان اینجا - پلاک 5 واحد 212
                 </p>
-                <p className="text-justify">
+                <p className="text-left">
                   <Telephone /> تلفن : 051300000000
                 </p>
-                <p className="text-justify">
+                <p className="text-left">
                   <Mailbox />
                   ایمیل: info@masalan.com
                 </p>

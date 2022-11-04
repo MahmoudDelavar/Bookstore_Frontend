@@ -37,7 +37,6 @@ export const loginUser = (userInfo) => {
       .post(apiUrl, userInfo)
       .then((res) => {
         const message = res.data.message;
-        console.log("msg from backend:", message);
         localStorage.setItem("token", res.data.data);
         dispach(loginUserSuccess(message));
         setTimeout(() => {
@@ -77,8 +76,11 @@ export const registerUser = (user) => {
       .post(apiUrl, user)
       .then((res) => {
         const message = res.data.message;
-        console.log("msg from backend", message);
+        localStorage.setItem("token", res.data.data);
         dispach(registerUserSuccess(message));
+        setTimeout(() => {
+          window.location = "/";
+        }, 2000);
       })
       .catch((err) => {
         const errs = "این ایمیل قبلا ثبت شده است";

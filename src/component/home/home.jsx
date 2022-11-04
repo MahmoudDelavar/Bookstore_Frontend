@@ -11,6 +11,7 @@ const Home = () => {
         alt="baner"
         style={{ width: "100%" }}
       />
+
       <HomeSlider />
       <NavTab />
       <Bestsellers />

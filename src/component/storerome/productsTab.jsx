@@ -11,24 +11,32 @@ const LastProductsAdded = () => {
   return (
     <>
       <>
-        <h4 className="text-center">لیست محصولات بر اساس دسته بندی </h4>
-        <Tabs defaultActiveKey="psycology" id="homeNave" className="mb-3 ">
-          <Tab eventKey="psycology" title="روانشناسی">
-            <ProductListByCategory category={"روانشناسی"} />
-          </Tab>
-          <Tab eventKey="Sport" title="ورزشی">
-            <ProductListByCategory category={"ورزشی"} />
-          </Tab>
-          <Tab eventKey="Historical" title="تاریخی">
-            <ProductListByCategory category={"تاریخی"} />
-          </Tab>
-          <Tab eventKey="Romance" title="رمان">
-            <ProductListByCategory category={"رمان"} />
-          </Tab>
-          <Tab eventKey="Poetry" title="شعر">
-            <ProductListByCategory category={"شعر"} />
-          </Tab>
-        </Tabs>
+        <div className="row">
+          <div className="col-xl-9 col-lg-10 col-md-11    table-box">
+            <Tabs
+              defaultActiveKey="psycology"
+              id="homeNave"
+              className="mb-1  "
+              justify="true"
+            >
+              <Tab eventKey="psycology" title="روانشناسی">
+                <ProductListByCategory category={"روانشناسی"} />
+              </Tab>
+              <Tab eventKey="Sport" title="ورزشی">
+                <ProductListByCategory category={"ورزشی"} />
+              </Tab>
+              <Tab eventKey="Historical" title="تاریخی">
+                <ProductListByCategory category={"تاریخی"} />
+              </Tab>
+              <Tab eventKey="Romance" title="رمان">
+                <ProductListByCategory category={"رمان"} />
+              </Tab>
+              <Tab eventKey="Poetry" title="شعر">
+                <ProductListByCategory category={"شعر"} />
+              </Tab>
+            </Tabs>
+          </div>
+        </div>
       </>
     </>
   );

@@ -3,15 +3,10 @@ import "./productStyle.css";
 const CaruselComponent = ({ title, src, explan, price, category, writer }) => {
   return (
     <>
-      <div className="product mb-3 ">
+      <div className="col mb-3 ">
         <Link className="product " to={"/#"} style={{ color: "black" }}>
-          <div class="card " style={{ height: "350px" }}>
-            <img
-              src={src}
-              class="card-img-top"
-              alt="failed"
-              style={{ width: "100%", height: "180px" }}
-            />
+          <div class="card ">
+            <img src={src} class="card-img-top" alt="failed" />
             <div class="card-body">
               <p class="card-title text-center">{title}</p>
               <p class="card-title text-center">{writer}</p>
