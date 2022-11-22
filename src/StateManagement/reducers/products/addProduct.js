@@ -17,7 +17,11 @@ const addProduct = (state = initionalState, action) => {
     case ADD_PRODUCT_SUCCESS:
       return { data: [], err: "", msg: action.payload };
     case ADD_PRODUCT_FAILED:
-      return { data: [], err: action.err, msg: "" };
+      return {
+        data: [],
+        err: action.err,
+        msg: "این عنوان کتاب قبلا ثبت شده است",
+      };
     default:
       return state;
   }

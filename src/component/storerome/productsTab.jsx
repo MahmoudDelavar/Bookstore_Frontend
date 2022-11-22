@@ -19,19 +19,39 @@ const LastProductsAdded = () => {
               className="mb-1  "
               justify="true"
             >
-              <Tab eventKey="psycology" title="روانشناسی">
+              <Tab
+                eventKey="psycology"
+                title="روانشناسی"
+                style={{ overflowY: "hidden" }}
+              >
                 <ProductListByCategory category={"روانشناسی"} />
               </Tab>
-              <Tab eventKey="Sport" title="ورزشی">
+              <Tab
+                eventKey="Sport"
+                title="ورزشی"
+                style={{ overflowY: "hidden" }}
+              >
                 <ProductListByCategory category={"ورزشی"} />
               </Tab>
-              <Tab eventKey="Historical" title="تاریخی">
+              <Tab
+                eventKey="Historical"
+                title="تاریخی"
+                style={{ overflowY: "hidden" }}
+              >
                 <ProductListByCategory category={"تاریخی"} />
               </Tab>
-              <Tab eventKey="Romance" title="رمان">
+              <Tab
+                eventKey="Romance"
+                title="رمان"
+                style={{ overflowY: "hidden" }}
+              >
                 <ProductListByCategory category={"رمان"} />
               </Tab>
-              <Tab eventKey="Poetry" title="شعر">
+              <Tab
+                eventKey="Poetry"
+                title="شعر"
+                style={{ overflowY: "hidden" }}
+              >
                 <ProductListByCategory category={"شعر"} />
               </Tab>
             </Tabs>

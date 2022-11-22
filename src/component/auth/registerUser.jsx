@@ -73,29 +73,27 @@ const RegisterUser = ({ registerUser, message, err }) => {
         <div className="row main-login">
           <div className="col-sm-9 col-md-6 col-lg-5 col-xl-3 form-box ">
             {/*-------------------  validation error box -------------------*/}
-            <section>
-              {errs.length !== 0 && (
-                <div className="alert alert-danger mb-3">
-                  <ul
-                    className="text-center success fw-bold"
-                    style={{ listStyle: "none" }}
-                  >
-                    {errs.map((e, index) => (
-                      <li key={index}>{e}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </section>
+
+            {errs.length !== 0 && (
+              <div className="alert alert-danger mb-3">
+                <ul
+                  className="text-center success fw-bold"
+                  style={{ listStyle: "none" }}
+                >
+                  {errs.map((e, index) => (
+                    <li key={index}>{e}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/*-----------------  Databas error box ------------------*/}
-            <section>
-              {dbErrs && (
-                <div className="alert text-danger  mb-3">
-                  <span>{dbErrs}</span>
-                </div>
-              )}
-            </section>
+
+            {dbErrs && (
+              <div className="alert text-danger  mb-3">
+                <span>{dbErrs}</span>
+              </div>
+            )}
 
             {/*------------------- Databas success msg box -------------------*/}
             {msg && (
@@ -105,75 +103,73 @@ const RegisterUser = ({ registerUser, message, err }) => {
             )}
 
             {/*-------------- Title --------------*/}
-            <section>
-              <div className=" ">
-                <span className="login-title">Register</span>
-                <IoIosLogIn className="logo-login" />
-              </div>
-            </section>
+
+            <div className=" ">
+              <span className="login-title">Register</span>
+              <IoIosLogIn className="logo-login" />
+            </div>
 
             {/*-------------- Form inputs --------------*/}
-            <section>
-              <form
-                className="form"
-                action=""
-                onSubmit={(e) => handelSubmit(e)}
-              >
-                <label htmlFor="userName-label">نام کاربری</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <IoIosContact className="login-icon" />
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control "
-                    name="userName"
-                    id="userName-label"
-                  />
-                </div>
-                <label htmlFor="email-label">ایمیل</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text">
-                    <IoMdMail className="login-icon" />
-                  </span>
-                  <input
-                    type="email"
-                    className="form-control "
-                    name="email"
-                    id="email-label"
-                  />
-                </div>
-                <label htmlFor="pass-label">کلمه عبور</label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text ">
-                    <IoMdKey className="login-icon" />
-                  </span>
-                  <input
-                    type="password"
-                    className="form-control "
-                    name="password"
-                    id="pass-label"
-                  />
-                </div>
-                <label htmlFor="pass-label">تکرار کلمه عبور </label>
-                <div className="input-group mb-3">
-                  <span className="input-group-text ">
-                    <IoMdKey className="login-icon" />
-                  </span>
-                  <input
-                    type="password"
-                    className="form-control "
-                    name="re-password"
-                    id="pass-label"
-                  />
-                </div>
-                <div className="d-grid">
-                  <button className="btn btn-info btn-sm" type="submit">
-                    ثبت نام
-                  </button>
-                </div>
-              </form>
-            </section>
+
+            <form className="form" action="" onSubmit={(e) => handelSubmit(e)}>
+              <label htmlFor="userName-label">نام کاربری</label>
+              <div className="input-group mb-3">
+                <span className="input-group-text">
+                  <IoIosContact className="login-icon" />
+                </span>
+                <input
+                  type="text"
+                  className="form-control "
+                  name="userName"
+                  id="userName-label"
+                />
+              </div>
+              <label htmlFor="email-label">ایمیل</label>
+              <div className="input-group mb-3">
+                <span className="input-group-text">
+                  <IoMdMail className="login-icon" />
+                </span>
+                <input
+                  type="email"
+                  className="form-control "
+                  name="email"
+                  id="email-label"
+                />
+              </div>
+              <label htmlFor="pass-label">کلمه عبور</label>
+              <div className="input-group mb-3">
+                <span className="input-group-text ">
+                  <IoMdKey className="login-icon" />
+                </span>
+                <input
+                  type="password"
+                  className="form-control "
+                  name="password"
+                  id="pass-label"
+                />
+              </div>
+              <label htmlFor="pass-label">تکرار کلمه عبور </label>
+              <div className="input-group mb-3">
+                <span className="input-group-text ">
+                  <IoMdKey className="login-icon" />
+                </span>
+                <input
+                  type="password"
+                  className="form-control "
+                  name="re-password"
+                  id="pass-label"
+                />
+              </div>
+              <div className="d-grid">
+                <button
+                  style={{ background: "rgb(88, 166, 255)" }}
+                  className="btn btn-info btn-sm"
+                  type="submit"
+                >
+                  ثبت نام
+                </button>
+              </div>
+            </form>
           </div>
           <div className="col-md-6 ">
             <p style={{ color: "black" }}>L</p>

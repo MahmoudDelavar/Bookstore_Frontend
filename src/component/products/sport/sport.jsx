@@ -6,13 +6,11 @@ class Sport extends Component {
     books: [],
   };
   componentDidMount() {
-    axios
-      .get("http://lyeechizi.ir/api/storeroom?category=ورزشی")
-      .then((res) => {
-        const books = res.data.data;
+    axios.get("http://yeechizi.ir/api/storeroom?category=ورزشی").then((res) => {
+      const books = res.data.data;
 
-        this.setState({ books });
-      });
+      this.setState({ books });
+    });
   }
   render() {
     return (

@@ -25,7 +25,7 @@ class Psychology extends Component {
             </h6>
           </div>
         )}
-        <div className="d-flex">
+        <div className="d-flex ">
           {this.state.books.map((u, index) => (
             <CardComponent
               key={index}

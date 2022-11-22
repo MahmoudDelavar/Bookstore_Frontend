@@ -70,29 +70,25 @@ const LoginUser = ({ loginUser, message, err }) => {
         <div className="row main-login">
           <div className="col-sm-9 col-md-6 col-lg-5 col-xl-3 form-box ">
             {/*-------------------  validation error box -------------------*/}
-            <section>
-              {errs.length !== 0 && (
-                <div className="alert alert-danger mb-3">
-                  <ul
-                    className="text-center success fw-bold"
-                    style={{ listStyle: "none" }}
-                  >
-                    {errs.map((e, index) => (
-                      <li key={index}>{e}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </section>
+            {errs.length !== 0 && (
+              <div className="alert alert-danger mb-3">
+                <ul
+                  className="text-center success fw-bold"
+                  style={{ listStyle: "none" }}
+                >
+                  {errs.map((e, index) => (
+                    <li key={index}>{e}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/*-----------------  Databas error box ------------------*/}
-            <section>
-              {dbErrs && (
-                <div className="alert text-danger fadein ">
-                  <span>{dbErrs}</span>
-                </div>
-              )}
-            </section>
+            {dbErrs && (
+              <div className="alert text-danger fadein ">
+                <span>{dbErrs}</span>
+              </div>
+            )}
 
             {/*------------------- Databas success msg box -------------------*/}
             {msg && (
@@ -102,12 +98,11 @@ const LoginUser = ({ loginUser, message, err }) => {
             )}
 
             {/*-------------- Title --------------*/}
-            <section>
-              <div className=" ">
-                <span className="login-title">Login</span>
-                <IoIosLogIn className="logo-login" />
-              </div>
-            </section>
+
+            <div className=" ">
+              <span className="login-title">Login</span>
+              <IoIosLogIn className="logo-login" />
+            </div>
 
             {/*-------------- Login by Social Network --------------*/}
             <section className="loginBy">
@@ -155,8 +150,12 @@ const LoginUser = ({ loginUser, message, err }) => {
                     id="pass-label"
                   />
                 </div>
-                <div className=" d-grid ">
-                  <button className="btn btn-secondary" type="submit">
+                <div className="d-grid">
+                  <button
+                    style={{ background: "rgb(88, 166, 255)" }}
+                    className="btn  btn-sm"
+                    type="submit"
+                  >
                     ورود
                   </button>
                 </div>

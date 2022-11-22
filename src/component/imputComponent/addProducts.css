@@ -1,8 +1,9 @@
 .box {
-  background-color: antiquewhite;
-  border-radius: 25px;
-  margin-bottom: 30px;
+  padding-top: 10px;
+  background-color: rgb(29, 29, 29);
+  color: rgb(88, 166, 255);
 }
+
 .pic-input {
   opacity: 0;
   width: 0.1px;
@@ -19,4 +20,21 @@
   z-index: -1;
   width: 0.01px;
   height: 0.01px;
+}
+
+.add-img {
+  width: 25rem;
+  height: 25rem;
+}
+.edit-img {
+  width: 15rem;
+  height: 15rem;
+}
+
+.edit-form-box {
+  border: 1px solid rgba(88, 166, 255, 0.11);
+  border-radius: 5px;
+  color: rgb(88, 166, 255);
+  background-color: rgb(34, 34, 34);
+  margin-bottom: 25px;
 }
